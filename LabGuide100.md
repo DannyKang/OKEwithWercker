@@ -4,7 +4,7 @@
 
 ## Introduction
 
-본 Hands on Lab은 Container Native on OKE with Wercker 시리즈의 첫번째로, Oracle Cloud Infrastructure를 기반으로 Java로 만들어진 Application을 Container로 만들고 이를 Kubernetes Cluster환경에 배포하는 과정을 따라하면서 오라클의 컨테이너 기반 CI/CD 툴인 **Wercker**와 오라클의 쿠버네티스 서비스인 **OKE (Oracle Kubernetes Engine)**을 경험해 보는 것을 목표로 합니다. 
+본 Hands on Lab은 Container Native on OKE with Wercker 시리즈의 첫번째로, Oracle Cloud Infrastructure를 기반으로 Java로 만들어진 Application을 Container로 만들고 이를 Kubernetes Cluster환경에 배포하는 과정을 따라하면서 오라클의 컨테이너 기반 CI/CD 툴인 **Wercker**와 오라클의 쿠버네티스 서비스인 **OKE, Oracle Kubernetes Engine**을 경험해 보는 것을 목표로 합니다. 
 
 ## 학습목표
 
@@ -35,109 +35,106 @@
 
 ### **STEP 1**: GitHub에서 예제(자바) 애플리케이션 포크하기
 
-- 브라우저에서 아래 링크로 이동
+- 브라우저에서 아래 링크로 이동:
 
     [https://github.com/derekoneil/twitter-feed-oke](https://github.com/derekoneil/twitter-feed-oke)
 
-- 오른쪽 상단의 **Fork** 를 클릭. 메시지가 표시되면 **Sign in**.
+- 오른쪽 상단의 **Fork** 를 클릭하고 GitHub 계정으로 로그인 한다. 
 
   ![](images/100/1.png)
 
-  **NOTE:** If prompted, choose to fork the repository to your account (this may occur if your account is also a member of an organization on GitHub).
+### **STEP 2**: Wercker 계정 생성하기 
 
-### **STEP 2**: Create a Wercker account
+  **NOTE** Wercker 계정을 가지고 계신 계정을 이용하시면 되므로 **STEP 3**을 따라 하시면 됩니다. GitHub 계정으로 Wercker에 로그인 하기 위해 아래 과정을 따라 로그인 합니다. 
 
-  **NOTE** If you already have a Wercker account, use your account to log into Wercker, and proceed to **STEP 3**. If you have not associated your existing Wercker account with your GitHub account, you can do so in the **Settings->Git Connections** menu, found in the user dropdown in the top right corner of Wercker.
-
-- In a new browser tab, go to:
+- 브라우저에서 아래 링크로 이동:
     [http://app.wercker.com/](http://app.wercker.com/)
 
-- Click **Sign Up** in the upper right hand corner of the browser. Alternately, if you have already signed up for a Wercker account, click **log in** and then **log in with GitHub** and skip to **STEP 3**.
+- 오른쪽 상단 메뉴에 **Sign Up** 클릭하여 GitHub 계정으로 로그인
 
   ![](images/100/LabGuide100-ce2ae3c1.png)
 
-- Click **Sign Up Using GitHub**
+- **Sign Up Using GitHub** 클릭
 
   ![](images/100/3.png)
 
-- Click the green **Authorize Wercker** button
+-  **Authorize Wercker**  클릭
 
   ![](images/100/4.png)
 
-- Enter **a username and your email address** to complete your Wercker account creation
+- Wercker에서 사용할 username과 email을 입력합니다. 
 
   ![](images/100/5.png)
 
-### **STEP 3**: Create a Wercker Application
+### **STEP 3**: Wercker 애플리케이션 생성
 
-- If this is your first Wercker application, click the blue **Create your first application** button. If you already have applications in your Wercker account, click the **plus button** in the upper right hand corner of the browser and select **Add application**:
+- Wercker 애플리케이션을 처음 만드는 경우는 파란색 **Create your first application** 버튼을 클릭. 이미 생성 경험이 있는 경우는 오른쪽위의 **plus button** 클릭하고  **Add application**를 클릭한다.:
 
   ![](images/100/6.png)
 
 
-- Leave the default selections of **your account** for the owner and **GitHub** for the SCM and click **Next**
+- default 로 설정하고 **your account**  **GitHub**를 설정하고 **Next** 클릭
 
   ![](images/100/7.png)
 
-- Click on the **twitter-feed-oke** repository that appears in the list of your GitHub repositories, then click **Next**
+- 자신을 레포지터리에서 **twitter-feed-oke** 을 선택하고 **Next** 클릭
 
   ![](images/100/LabGuide100-65267c06.png)
 
-- Leave the default selection of checkout without an SSH key and click **Next**
+- default (without ssh key) 설정대로 하고 **Next** 클릭
 
   ![](images/100/9.png)
 
-- Click **Create**
+- **Create** 클릭
 
   ![](images/100/LabGuide100-1066e6c2.png)
 
-- Do not generate a wercker.yml file -- we will create one in a later step.
 
-## Create and Run Wercker Build Pipeline
+## Wercker 빌드 파이프라인 생성 및 실행
 
-### **STEP 4**: Configure Pipelines and Workflow in Wercker
+### **STEP 4**: Pipelines Workflow 설정
 
-- Navigate to the Wercker page for your newly-created application (you will already be on that page if you just completed **STEP 3**). Notice that you are viewing the **Runs** tab. This is where any executions of your workflow will be recorded.
+- 새로 생성된 애플리케이션의 **Runs** 탭으로 이동, 이 Runs에서는 애플리케이션을 실행 이력을 볼 수 있다.  
 
   ![](images/100/16.png)
 
-- Click the **Workflows** tab. You will see that Wercker has created the beginning of a workflow for you already. This workflow is triggered by a Git commit and it will execute a pipeline called **build**.
+- **Workflows** 탭을 이동. 이 워크플로우는 Git commit에 의해 기동(trigger)되며, **build** 라고 하는 파이프라인을 실행
 
   ![](images/100/17.png)
 
-- The **build** pipeline will be used to build and unit test our application. Let's create a new pipeline to store the resulting Docker image in a Docker Hub repository. Click the **Add new pipeline** button.
+- **build** 파이프라인은 애플리케이션 빌드와 Unit테스트에 이용된다. 새로운 파이프라인을 만들어 Docker image를 만들고 Docker Hub 레포지토리에 저장해 본다. **Add new pipeline** 버튼 클릭
 
   ![](images/100/18.png)
 
-- Fill in `push-release` for the name of the pipeline and the YML name of the pipeline and click **Create**.
+- 파이프라인 Name과 YML Pipeline name 항목에 `push-release` 입력하고 **Create** 클릭
 
   ![](images/100/19.png)
 
-- You will be presented with the pipeline's environment variable screen. We do not need to add any pipeline-specific environment variables, so just click on the **Workflows** tab to return to the workflow editor.
+- 이제 파이프라인의 환경변수를 입력하는 항목은 비워둔다. **Workflows** 탭을 클릭해서 workflow editor 창으로 이동.
 
   ![](images/100/LabGuide100-6f799cee.png)
 
-- Click the **plus sign** next to the build pipeline in the editor.
+- **plus sign** 를 클릭.
 
   ![](images/100/20.png)
 
-- In the **Execute Pipeline** drop down list, choose the pipeline we just created, **push-release**. Leave the other fields at their default values and click **Add**.
+- **Execute Pipeline** 항목에 좀전에 생성한 **push-release** 를 선택하고 **Add** 클릭.
 
   ![](images/100/21.png)
 
 - Now that we've got a workflow configured that will build and store a Docker image containing our application, we need to define exactly how to do that in a file called **wercker.yml**, which we will store in our application's Git repository.
 
-### **STEP 5**: Define Wercker Build Pipeline
+### **STEP 5**: Wercker 빌드 파이프라인 정의
 
-- Switch back to your GitHub browser tab, showing your forked copy of the **twitter-feed** repository, and click **Create new file**
+- 브라우저의 GitHub에 접속했던 탭으로 돌아가서, 좀전에 fork했던 **twitter-feed** 레포지토리에서 **Create new file** 클릭
 
   ![](images/100/13.png)
 
-- In the **Name your file...** input field, type `wercker.yml`
+- **Name your file...** 에 `wercker.yml` 입력
 
   ![](images/100/14.png)
 
-- In the **Edit new file** input box, **paste** the following:
+- **Edit new file** 에 다음 yaml 파일을 **붙여넣기** 한다.
 
     ```yaml
     #Use OpenJDK base docker image from dockerhub and open the application port on the docker container
@@ -156,35 +153,31 @@
             code: mvn clean assembly:assembly
     ```
 
-- You should have **14 lines** of YAML in the editor:
+- 에디터 창에 아래와 같은 YAML 파일을 갖게 된다. 
 
   ![](images/LabGuide100-f5af715a.png)
 
-- Let's look at the two sections of YAML that we've just added. The first section describes a **box**. A **box** is the image that you want Wercker to pull from a Docker registry (the default is Docker Hub) to build your pipeline from. In our case, we need a Java environment to run our application, so we will pull the **openjdk** image from Docker Hub.
+- YAML 파일의 첫번째 섹션은 docker base image를 정의하며, 두번째 섹션은 우리가 정의한 **Build** 파이프라인을 실행하도록 한다. 이 **Build** 파이프라인은 두개의 **steps** 로 구성되어 있다. 하나는  **install-packages** 필요한 패키지를 설치하고, 두번째는 shell 스크립트를 실행한다. 
 
-  The second section defines our first pipeline, the **build** pipeline. Our **build** pipeline consists of two **steps**, one to install any packages required for our build process (**install-packages**), and one to execute a shell command to invoke the build (**script**).
-
-  Since our application is built using Maven, we will instruct Wercker to install the Maven package first, using the **install-packages** step. Then we'll build the application the same way we would normally, invoking Maven in the **script** step.
-
-- At the bottom of the page, click the **Commit new file** button.
+- 화면의 제일 밑에 **Commit new file** 버튼을 클릭한다. 
 
   ![](images/100/23.png)
 
-- Switch back to your **Wercker** browser tab and click on the **Runs** tab. If you are quick enough, you will see that Wercker has been notified of your new Git commit (via a webhook) and is executing your workflow.
+- 브라우저의 **Wercker** 탭으로 돌아와서 **Runs** 탭을 보면 Git Commit에 의해 Trigger되서 실행되는 워크플로우를 볼수 있다. 
 
   ![](images/100/24.png)
 
-- You should see that the **build** pipeline completes successfully, but the **push-release** pipeline fails. That's what we expected, since we have not yet defined the steps for the **push-release** pipeline in our wercker.yml file.
+- **build** 파이프라인은 성공하지만, **push-release** 파이프라인은 아직 설정을 하지 않았기 때문에 실패한다. 
 
   ![](images/100/25.png)
 
-- Click on the green **build** pipeline to drill into the details of each step. Note that you can click on each step to see the console output produced by that step. In our case that output includes things like the results of the tests that Maven executed before packaging our application. If any commands produce an error status code, Wercker will abort the workflow and notify you via email.
+- 파란색 **build** 파이프라인을 클릭하면 실행 내역을 조회할 수 있고, 실패등의 이벤트를 이메일로 통지 받을 수 있다. 
 
   ![](images/100/26.png)
 
-- Our next step is to define the second part of our workflow, the **push-release** pipeline, which will store our container image in a Docker repository (OCIR) after a successful **build**. This pipeline will make use of some environment variables, so let's get those set up first.
+- 이제 **push-release** 파이프라인을 수정해서 빌드한 컨테이너 이미지를 저장할 수 있는 **Oracle Container Image Registry(OCIR)** 의 환경변수를 설정한다. 
 
-### **STEP 6**: Set Environment Variables in Wercker
+### **STEP 6**: Wercker에 환경 변수 설정
 
 - In your Wercker browser tab, click the **Environment** tab.
 

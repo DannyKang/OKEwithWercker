@@ -465,7 +465,7 @@
 
   **Windows PowerShell**
   ```bash
-  $env:KUBECONFIG="path\to\your\kubeconfig"
+  $set KUBECONIFIG=$HOME\Desktop\OKE-HandsOn\config
   kubectl proxy
   ```
 

@@ -4,13 +4,13 @@
 
 ## Introduction
 
-본 Hands on Lab은 Container Native on OKE with Wercker 시리즈의 첫번째로, Oracle Cloud Infrastructure를 기반으로 Java로 만들어진 Application을 Container로 만들고 이를 Kubernetes Cluster환경에 배포하는 과정을 따라하면서 오라클의 컨테이너 기반 CI/CD 툴인 **Wercker**와 오라클의 쿠버네티스 서비스인 **OKE, Oracle Kubernetes Engine**을 경험해 보는 것을 목표로 합니다. 
+본 Hands on Lab은 Container Native on OKE with Wercker 시리즈의 첫번째로, Oracle Cloud Infrastructure를 기반으로 Java로 만들어진 Application을 Container로 만들고 이를 Kubernetes Cluster환경에 배포하는 과정을 따라하면서 오라클의 컨테이너 기반 CI/CD 툴인 **Wercker**와 오라클의 쿠버네티스 서비스인 **OKE(Oracle Kubernetes Engine)** 을 경험해 보는 것을 목표로 합니다. 
 
 ## 학습목표
 
 **자바 애플리케이션을 컨테이너로 만드는 일련의 과정을 자동화**
 
-> Wercker는 네덜란드식 발음 **"베커"** 또는 영어식 발음 **"워커"**라고 부른다. 
+> Wercker는 네덜란드식 발음으로는 **"베커"** 또는 영어식 발음 **"워커"** 로 부른다.  
 
 - Wercker 애플리케이션 만들기 
   - GitHub에서 자바 애플리케이션 포크하기

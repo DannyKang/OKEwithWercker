@@ -1,97 +1,244 @@
-# OCI 콘솔을 이용한 쿠버네티스 클러스터 생성
 
-## Objectives
+# 자바 애플리케이션을 컨테이너화하고 빌드 자동화하기 
 
-**Automate Deployment to Kubernetes**
+## Wercker 애플리케이션 만들기
 
-- Create and Deploy to a Kubernetes Cluster
-  - Set Up Oracle Cloud infrastructure
-  - Provision Kubernetes Using the OCI Console
-  - Configure and Run Wercker Deployment Pipelines
-  - Deploy and Test the Product Catalog Application
+### **STEP 1**: GitHub에서 예제(자바) 애플리케이션 포크하기
 
-## Required Artifacts
+- 브라우저에서 아래 링크로 이동:
 
-  - an Oracle Cloud Trial Account
+    [https://github.com/DannyKang/twitter-feed-oke](https://github.com/DannyKang/twitter-feed-oke)
 
-# OCI 콘솔을 이용한 쿠버네티스 클러스터 생성
+- 오른쪽 상단의 **Fork** 를 클릭하고 GitHub 계정으로 로그인 한다. 
 
-## Oracle Cloud infrastructure 환결 설정
+  ![](images/100/1.png)
 
-### **STEP 1**: OCI 대쉬보드 로그인
+### **STEP 2**: Wercker 계정 생성하기 
 
-- 수신한 Trial Welcome 메일을 참조하여 **Username, Password, Cloud Account Name** 참조.
+  **NOTE** Wercker 계정을 가지고 계신 경우는 **STEP 3**을 따라 하시면 됩니다.
+   GitHub 계정으로 Wercker에 로그인 하기 위해 아래 과정을 따라 로그인 합니다. 
 
-  ![](images/200/0.1.png)
+- 브라우저에서 아래 링크로 이동:
+    [http://app.wercker.com/](http://app.wercker.com/)
 
-- 사전에 신청한 Trial 계정을 이용해 로그인, Trial 계정이 없는 경우 Workshop Instructor에게 요청
+- 오른쪽 상단 메뉴에 **Sign Up** 클릭하여 GitHub 계정으로 로그인
 
-    [https://cloud.oracle.com/en_US/sign-in](https://cloud.oracle.com/en_US/sign-in)
+  ![](images/100/LabGuide100-ce2ae3c1.png)
 
-- **Cloud Account Name** 정보 입력하고 **My Services** 버튼 클릭. 
+- **Sign Up Using GitHub** 클릭
 
-  ![](images/200/1.png)
+  ![](images/100/3.png)
 
--  **Username** 과  **Password** 를 입력하고 **Sign In** 클릭. 
+-  **Authorize Wercker**  클릭
 
-  ![](images/200/2.png)
+  ![](images/100/4.png)
+
+- Wercker에서 사용할 username과 email을 입력합니다. 
+
+  ![](images/100/5.png)
+
+### **STEP 3**: Wercker 애플리케이션 생성
+
+- Wercker 애플리케이션을 처음 만드는 경우는 파란색 **Create your first application** 버튼을 클릭. 이미 생성 경험이 있는 경우는 오른쪽위의 **plus button** 클릭하고  **Add application**를 클릭한다.:
+
+  ![](images/200/wercker-add-app.png)
 
 
-- 대쉬보드의 좌측 상단 **hamburger menu** 클릭
+- default 로 설정하고 **your account**  **GitHub**를 설정하고 **Next** 클릭
 
-  ![](images/200/3.png)
+  ![](images/100/7.png)
 
-- **Services** 메뉴 클릭하고 **Compute** 클릭
+- 자신을 레포지터리에서 **twitter-feed-oke** 을 선택하고 **Next** 클릭
 
-  ![](images/200/4.png)
+  ![](images/200/wercker-select-repo.png)
 
-- 이렇게 하면 OCI 콘솔 로그인 화면이 나온다. 이는 오라클에는 OCI-Classic 서비스와 OCI 서비스가 있기 때문이로 위와 동일한 계정 정보로 한번 더 로그인 한다. 
+- default (without ssh key) 설정대로 하고 **Next** 클릭
 
-  ![](images/200/5.png)
+  ![](images/100/9.png)
 
-### **STEP 2**: OCI 콘솔을 이용한 쿠버네티스 클러스터 생성
+- **Create** 클릭
 
-  - 이제 쿠버네티스 클러스터를 만들 준비가 됐다. OCI 콘솔 메뉴에서 **Developer Services->Container Clusters (OKE)**를 선택.
+  ![](images/200/wercker-app-create.png)
 
-    ![](images/200/LabGuide200-5c0a2b4c.png)
 
-  - In the Compartments drop down, select the **Demo** compartment.
+## Wercker 빌드 파이프라인 생성 및 실행
 
-    ![](images/200/LabGuide200-4071818d.png)
+### **STEP 4**: Pipelines Workflow 설정
 
-  - **Create Cluster** 클릭
+- 새로 생성된 애플리케이션의 **Runs** 탭으로 이동, 이 Runs에서는 애플리케이션의 실행 이력을 볼 수 있다.  
 
-    ![](images/200/LabGuide200-2e2ab7ca.png)
+  ![](images/100/16.png)
 
-  - 데모를 간략히 하기 위해 선택된 그대로 Create 버튼을 클릭한다. 
+- **Workflows** 탭을 이동. 이 워크플로우는 Git commit에 의해 기동(trigger)되며, **build** 라고 하는 파이프라인을 실행
 
-    ![](images/LabGuide200-6ff14524.png)
-    ![](images/LabGuide200-11191333.png)
+  ![](images/100/17.png)
 
-    - 사용자의 필요에 따라 클러스터 설정을 추가로 설정할 수 있다.
-    - 현재 2가지 버전의 k8s를 사용가능 v1.15, v1.
-    - 디폴드 옵션은 클러스터를 위한 VCN(Virtual Cloud Network), 3개의 서브넷과 2개의 로드 밸랜서 그리고 각 서브넷에 Worker Node VM(총 3개) 이 생성된다. 
-    - Node Pool에 구성할 Worker Node 설정 가능
+- **build** 파이프라인은 애플리케이션 빌드와 Unit테스트에 이용된다. 새로운 파이프라인을 만들어 Docker image를 만들고 Docker Hub 레포지토리에 저장해 본다. **Add new pipeline** 버튼 클릭
 
-  - **Create** 클릭하면 클러스터 디테일 화면이 나온다. 
+  ![](images/100/18.png)
+
+- 파이프라인 Name과 YML Pipeline name 항목에 `push-release` 입력하고 **Create** 클릭
+
+  ![](images/100/19.png)
+
+- 이제 파이프라인의 환경변수를 입력하는 항목은 비워둔다. **Workflows** 탭을 클릭해서 workflow editor 창으로 이동.
+
+  ![](images/100/LabGuide100-6f799cee.png)
+
+- **plus sign** 를 클릭.
+
+  ![](images/100/20.png)
+
+- **Execute Pipeline** 항목에 좀전에 생성한 **push-release** 를 선택하고 **Add** 클릭.
+
+  ![](images/100/21.png)
+
+- 이제 워크플로우를 설정했으므로 이 워크플로우가 구체적으로 어떤 일을 할지를 정의하는 설정 파일인 **wercker.yml** 을 구성해야 한다. 
+
+### **STEP 5**: Wercker 빌드 파이프라인 정의
+
+- 브라우저의 GitHub에 접속했던 탭으로 돌아가서, 좀전에 fork했던 **twitter-feed** 레포지토리에서 **Create new file** 클릭
+
+  ![](images/100/13.png)
+
+- **Name your file...** 에 `wercker.yml` 입력
+
+  ![](images/100/14.png)
+
+- **Edit new file** 에 다음 yaml 파일을 **붙여넣기** 한다.
+
+    ```yaml
+    #Use OpenJDK base docker image from dockerhub and open the application port on the docker container
+    box:
+      id: openjdk:8
+      ports:
+        - 8080
+
+    #Build our application using Maven, just as we always have
+    build:
+      steps:
+        - install-packages:
+            packages: maven
+        - script:
+            name: maven build
+            code: mvn clean assembly:assembly
+    ```
+
+- 에디터 창에 아래와 같은 YAML 파일을 볼 수 있다. 
+
+  ![](images/LabGuide100-f5af715a.png)
+
+- YAML 파일의 첫번째 섹션은 docker base image를 정의하며, 두번째 섹션은 우리가 정의한 **Build** 파이프라인을 실행하도록 한다. 이 **Build** 파이프라인은 두개의 **steps** 로 구성되어 있다. 하나는  **install-packages** 필요한 패키지를 설치하고, 두번째는 shell 스크립트를 실행한다. 
+
+- 화면의 제일 밑에 **Commit new file** 버튼을 클릭한다. 
+
+  ![](images/100/23.png)
+
+- 브라우저의 **Wercker** 탭으로 돌아와서 **Runs** 탭을 보면 Git Commit에 의해 Trigger되서 실행되는 워크플로우를 볼수 있다. 
+
+  ![](images/100/24.png)
+
+- **build** 파이프라인은 성공하지만, **push-release** 파이프라인은 아직 설정을 하지 않았기 때문에 실패한다. 
+
+  ![](images/100/25.png)
+
+- 파란색 **build** 파이프라인을 클릭하면 실행 내역을 조회할 수 있으며, 빌드중에 실패하는 등의 이벤트를 이메일로 통지 받을 수 있다. 
+
+  ![](images/100/26.png)
+
+- 이제 **push-release** 파이프라인을 수정해서 빌드한 컨테이너 이미지를  **Oracle Container Infrastructure Registry(OCIR)** 에 저장하도록 환경변수를 설정한다. 
+
+### **STEP 6**: Wercker에 환경 변수 설정
+
+- Wercker 브라우저에서, **Environment** 탭 클릭.
+
+  ![](images/100/31.png)
+
+- 아래 기재된 환경변수를 Key, Value 를 차례로 입력한다. 
+  ```
+  Key:              Value:
+  DOCKER_USERNAME   <your-tenancy-name>/<your-oracle-cloud-username>
+  DOCKER_REGISTRY   iad.ocir.io
+  DOCKER_REPO       <your-tenancy-name>/twitter-feed
+  ```
+
+  ![](images/LabGuide100-ff28ad1b.png)
+
+  **NOTES**:
+
+  ![](images/LabGuide100-9f627c8b.png)
+
+  - `DOCKER_USERNAME`의 `<your-tenancy-name>`는 OCI Console 에 User menu에 있음:
+
+  ![](images/500/LabGuide500-e51e6a21.png)
+
+  - `DOCKER_USERNAME`의 `<your-oracle-cloud-username>` 은 로그인한 사용자 이메일 입니다. 
+
+  - `DOCKER_REGISTRY`에는 **iad.ocir.io** 를 입력한다. 
+
+
+### **STEP 7**: Wercker push 파이프라인 정의 
+
+- Github 화면에서 **wercker.yml** 파일의 **연필모양 아이콘**  클릭.
+
+  ![](images/100/LabGuide100-72ec3350.png)
+
+- 제일 밑에 아래 파일을 **붙여넣기paste** 한다.
+
+    ```yaml
+    #Push the docker image with our built and tested application to the Oracle Container Registry
+    push-release:
+      steps:
+        - internal/docker-push:
+            username: $DOCKER_USERNAME
+            password: $OCI_AUTH_TOKEN
+            repository: $DOCKER_REGISTRY/$DOCKER_REPO
+            registry: https://$DOCKER_REGISTRY/v2
+            tag: $WERCKER_GIT_BRANCH-$WERCKER_GIT_COMMIT
+            working-dir: /pipeline/source
+            ports: 8080
+            cmd: sh target/bin/start
+    ```
+
+  ![](images/100/LabGuide100-0274b607.png)
+
+- 이 섹션에서는 두번째 파이프라인인 **push-release**를 정의한다. **internal/docker-push** 스택은 내부 Docker Registry에 빌드한 Docker Image를 저장하는 스탭이다. 자세한 사항은 다음 참조 (http://devcenter.wercker.com/docs/steps/internal-steps#docker-push).
+
+- 페이제 제일 밑에 **Commit changes** 클릭
+
+  ![](images/100/29.png)
+
+### **STEP 8**: Validate Workflow Execution
+
+- 앞에서 본것과 같이 Git Commit에 따라 빌드 프로세스가 시작된다. **Runs** 탭에서 확인
+
+  ![](images/100/30.png)
+
+- `build` 파이프라인이 성공하고 `push-release` 가 진행되지만 마지막에 에러가 발생한다. 에러 메세지를 보면 `Anonymous users are only allowed read access on public repos` 권한 문제임을 알 수 있다. 다음 실습에서 해당 token을 추가해 보자.
+
+  ![](images/100/LabGuide100-a6bd0f55.png)
+
+  ![](images/LabGuide100-065b715b.png)
+
+
 
 ## Wercker 배포 파이프라인 생성 및 실행
 
-### **STEP 8**: Define Kubernetes Deployment Specification
+### **STEP 9**: 쿠버네티스 배포 설정 추가 
 
-- From a browser, navigate to your forked twitter-feed repository on GitHub. If you've closed the tab, you can get back by going to [GitHub](https://github.com/), clicking the **Repositories** tab at the top of the page, and clicking the **twitter-feed-oke** link.
+- GitHub 화면에서 기존에 fork한 **twitter-feed** 리포지토리 클릭
 
   ![](images/200/LabGuide200-b51c7f37.png)
 
-- Click **Create new file**
+- **Create new file** 클릭
 
   ![](images/200/27.png)
 
-- In the **Name your file** input field, enter **kubernetes.yml.template**
+- **Name your file** 에 **kubernetes.yml.template** 입력
 
   ![](images/200/28.png)
 
-- **Copy** the YAML below and **paste** it into the file editor.
+- 아래 YAML **Copy** & and **paste** .
 
     ```yaml
     apiVersion: extensions/v1beta1
@@ -138,25 +285,23 @@
       type: ClusterIP
     ---
     ```
-  >This configuration consists of two parts. The first section (up to line 28) defines a **Deployment**, which tells Kubernetes about the application we want to deploy. In this Deployment we instruct Kubernetes to create two Pods (`replicas: 2`) that will run our application. Within those pods, we specify that we want one Docker container to be run, and compose the link to the image for that container using environment variables specific to this workflow execution (`image: ${DOCKER_REPO}:${WERCKER_GIT_BRANCH}-${WERCKER_GIT_COMMIT}`).
+  >이 환경 설정 파일 쿠버네티스의 **Deployment**와 **Service** 를 정의하는 파일 입니다. **Deployment** 섹션에서는 (`replicas: 2`)와 같이 Pod를 2개 띄우도록 설정합니다. **Service**에서는 애플리케이션을 어떻게 외부에 노출할 것인가를 나타낸다. (`type: ClusterIP`)를 설정하여, cluster-internal IP 롤 설정하여 이 애플리케이션(twitter feed)는 클러스터 내부에서만 접근이 가능하다. y that our twitter feed is deployed properly -- we'll see how in a later step.
 
-  >The second part of the file defines a **Service**. A Service defines how Kubernetes should expose our application to traffic from outside the cluster. In this case, we are asking for a cluster-internal IP address to be assigned (`type: ClusterIP`). This means that our twitter feed will only be accessible from inside the cluster. This is ok, because the twitter feed will be consumed by the product catalog application that we will deploy later. We can still verify that our twitter feed is deployed properly -- we'll see how in a later step.
+  > 쿠버네티스에서는 설정을 일반적으로 `.yml` 파일 형식으로 저장한다.   `.template` 파일은 쿠버네티스 컨셉은 아니고 Wercker가 환경변수를 설정하기 위해 사용한다. Wercker 내에서 **bash-template** 스텝에서 `.template` 파일속의 환경변수 `${variables}` 설정하게 된다. 
 
-  >A `.yml` file is a common format for storing Kubernetes configuration data. The `.template` suffix in this file, however, is not a Kubernetes concept. We will use a Wercker step called **bash-template** to process any `.template` files in our project by substituting environment variables into the template wherever `${variables}` appear. You'll add that command to a new pipeline in the next step.
-
-  - At the bottom of the page, click **Commit new file**
+  - 제일 밑에 **Commit new file** 클릭
 
     ![](images/200/29.png)
 
-  - Since you've committed to the repository, Wercker will trigger another execution of your workflow. We haven't defined the deployment pipelines yet, so this will just result in a new entry in Wercker's Runs tab and a new image pushed to the container registry. You don't need to do anything with those; you can move on to the next step.
+  - Commit을 클릭하면 Wercker가 트리거되서 새로운 워크플로우가 실행된다. 
 
-### **STEP 9**: Define Wercker Deployment Pipelines
+### **STEP 9**: Wercker Deployment Pipelines 설정
 
-  - Click the file **wercker.yml** and then click the **pencil** button to begin editing the file.
+  - **wercker.yml** 파일을 클릭하고 **연필** 버튼을 클릭
 
     ![](images/200/26.png)
 
-  - **Copy** the YAML below and **paste** it below the pipelines we defined earlier.
+  - 아래의 YAML 을 **복사** 해서 제일 밑에 **붙여넣기** 한다. 
 
     ```yaml
     #Deploy our container from the Oracle Container Registry to the Oracle Container Engine (Kubernetes)
@@ -188,52 +333,56 @@
           code: cat kubernetes.yml
 
       - kubectl:
-          name: deploy to kubernetes
+          name: deploy twitter-feed to kubernetes
           server: $KUBERNETES_MASTER
           token: $KUBERNETES_AUTH_TOKEN
           insecure-skip-tls-verify: true
           command: apply -f kubernetes.yml
+          
+      - kubectl:
+          name: deploy alpha-office-catalog to kubernetes
+          server: $KUBERNETES_MASTER
+          token: $KUBERNETES_AUTH_TOKEN
+          insecure-skip-tls-verify: true
+          command: apply -f alpha-office-product-catalog.kubernetes.yml
     ```
 
-    >This will define a new **Pipeline** called deploy-to-cluster. The pipeline will make use of a new type of step: **kubectl**. If you have used Kubernetes before, you will be familiar with kubectl, the standard command line interface for managing Kubernetes. The kubectl Wercker step can be used to execute Kubernetes commands from within a Pipeline.
+    >이것은 **deploy-to-cluster** 파이프라인을 정의한다. **kubectl**를 이용해 쿠버네티스 클러스터에 애플리케이션을 디플로이한다. 
 
-    >The **deploy-to-cluster** Pipeline will prepare our kubernetes.yml file by filling in some environment variables. It will then use kubectl to tell Kubernetes to apply that configuration to our cluster.
+    > **deploy-to-cluster** 파이프라인에서는 두개의 deploy를 한다. 하나는 위에서 빌드한 **twitter-feed** 애플리케이션이과 나머지 하나는 UI가 있는 WebApp 인 **alpha-office-product-catalog** 이다. 
 
-- At the bottom of the page, click **Commit new file**
+-  **Commit new file** 클릭
 
   ![](images/200/29.png)
 
-- Since you've committed to the repository again, Wercker will once again trigger an execution of your workflow. We still haven't configured the deployment pipelines in Wercker yet, so we'll still end up with a new Run and a new image, but not a deployment to Kubernetes.
 
-### **STEP 10**: Set up deployment pipelines in Wercker
+### **STEP 10**: Wercker에서 deployment pipelines 설정
 
-- Open **[Wercker](https://app.wercker.com)** in a new tab or browser window, or switch to it if you already have it open. In the top navigation bar, click **Pipelines**, then click on your **twitter-feed** application.
+-  **[Wercker](https://app.wercker.com)**에서 **twitter-feed** 애플리케이션 선택.
 
   ![](images/200/30.png)
 
-- On the **Runs** tab you can see that Wercker has triggered another execution of our build and publish workflow, but it has not executed our new deploy-to-cluster pipeline. This is because we have not added the new pipeline to the workflow definition yet. Let's do that now -- click on the **Workflows** tab, then click the **Add new pipeline** button.
+-  **Workflows** 탑에서 **Add new pipeline** 버튼 클릭.
 
   ![](images/200/31.png)
 
-- Enter **deploy-to-cluster** into both the Name and YML Pipleine name fields. Click **Create**.
+-  **deploy-to-cluster** 입력 . **Create** 클릭.
 
   ![](images/200/32.png)
 
 - Click the **Workflows** tab again to get back to the editor.
 
-- Click the **plus** button to the right of the **push-release** pipeline to add to the workflow. In the **Execute Pipeline** drop down list, select **deploy-to-cluster** and click **Add**
+- **push-release**  파이프라인 옆 **플러스** 버튼 클릭해서 **deploy-to-cluster** 추가 하고 **Add** 클릭
 
   ![](images/200/33.png)
 
-- Your overall Workflow should now have three Pipelines:
-
+- 이제 Workflow에 3개의 파이프라인아 아래와 같이 보인다. 
   ![](images/200/34.png)
 
-- Now we've got our workflow updated with our deployment pipelines, but there's one more thing we need to do before we can actually deploy. We need to set a few environment variables that tell Wercker the address of our Kubernetes master and provide authentication tokens for Wercker to issue commands to Kubernetes and to OCI.
 
-### **STEP 11**: Set up environment variables in Wercker
+### **STEP 11**: Wercker 환경변수 설정
 
-- Our first step is to set our cluster's authentication token as a Wercker environment variable. In your **terminal window**, run the following commands to output the token, then **select it and copy it** to your clipboard:
+- **KUBERNETES_AUTH_TOKEN** 설정, **terminal window**에서 아래 명령어 실행
 
   **Windows**
     ```bash
@@ -241,9 +390,7 @@
     cat kubeconfig | grep token | awk '{print $2}'
     ```
 
-    **NOTE**: You may have to use Bash Shell or Git Bash to run the command above. If you don't have either one available, you can open the `kubeconfig` file in Notepad, find the `token:` section at the bottom of the file, and copy the token value from there.
-
-      ![](images/LabGuide200-406fe845.png)
+    ![](images/LabGuide200-406fe845.png)
 
   **Mac/Linux**
     ```bash
@@ -253,11 +400,11 @@
 
     ![](images/200/LabGuide200-8ef1b50b.png)
 
-- Back in your Wercker browser tab, click the **Environment** tab. In the key field of the empty row below the last environment variable, enter the key **KUBERNETES_AUTH_TOKEN**. In the value field, **paste** the token we just copied. Check the **Protected** box and click **Add**.
+- Wercker의 **Environment** 탭에서 **KUBERNETES_AUTH_TOKEN**의 Key Value 쌍을 입력 **Protected** 박스를 체크하고 **Add** 클릭.
 
   ![](images/200/LabGuide200-7a3d011b.png)
 
-- The next environment variable we need to add is the address of the Kubernetes master we want to deploy to. We can get the URL from `kubectl`. Run the following command in your **terminal window** to output the URL, then **select it and copy it** to your clipboard:
+- **KUBERNETES_MASTER** 설정, **terminal window**에서 아래 명령어 실행
 
   **Windows**
     ```bash
@@ -269,180 +416,75 @@
     echo $(./kubectl config view | grep server | cut -f 2- -d ":" | tr -d " ")
     ```
 
-- In your Wercker browser tab, add a new environment variable with the key **KUBERNETES_MASTER**. In the value field, **paste** the value you copied from `kubectl`. The value **must start with https://** for Wercker to communicate with the cluster. When finished, click **Add**.
+- **KUBERNETES_MASTER** Key에 위에서 복사한 값을 추가하다. 이때 꼭 **https://** 를 추가해야 한다. 
 
   ![](images/200/55.png)
 
-  **NOTE**: You can also find this address in the OCI Console OKE page, by clicking on your cluster name to view the detail page:
+  **NOTE**: OCI 콘솔의 OKE 페이지에서도 k8s master정보를 찾을 수 있다. 
 
     ![](images/200/LabGuide200-9d5e858e.png)
 
-- The last environment variable we need to create in Wercker is a token for Wercker to authenticate to OCI so that it can push our Docker image to the OCI Repository (OCIR). We will generate this authentication token in the OCI Console and then paste it into a Wercker environment variable. Add a new environment variable with the key **OCI_AUTH_TOKEN**.
+- **OCI_AUTH_TOKEN** 생성, OCI Registry (OCIR) 에 접근하기 위한 인증 토근 생성 
 
   ![](images/200/LabGuide200-ad86d83b.png)
 
-- Switch to your **OCI Console** browser tab. Use the navigation menu to go to Identity->Users and select **View User Details** from the three-dots menu for your user. If you've closed the tab, [log in again](https://console.us-ashburn-1.oraclecloud.com).
+- **OCI Console** 브라우저에서 **Identity->Users** 에서 **View User Details** 클릭
 
   ![](images/LabGuide200-f1749ef3.png)
 
-  **NOTE**: You may see two users in the list, one that is named with just your email address, and another that is named `oracleidentitycloudservice`/your-email-address. **Choose the one that is named just your-email-address.**
+  **NOTE**: 두개의 유저가 보일 것이다. 이메일 주소만 있는 짧은 사용자 명을 선택한다.
 
-- In the Resources menu of the user settings page, click **Auth Tokens**. Then click **Generate Token**.
+- **Auth Tokens** 클릭 **Generate Token** 클릭해서 토큰 생성.
 
   ![](images/200/LabGuide200-8b775cc2.png)
 
   ![](images/200/LabGuide200-ae59e875.png)
 
-- In the Description field, enter **Wercker Pipeline Token** and click **Generate Token**.
+- Description에 **Wercker Pipeline Token** 라고 입력하고 **Generate Token** 클릭.
 
   ![](images/200/LabGuide200-a04556fa.png)
 
-- Click the **Copy** link under the generated token, then click **Close**. Switch back to your Wercker browser tab and **Paste** this token into the Value field of the **OCI_AUTH_TOKEN** environment variable you started creating earlier. Check the **Protected** box and click **Save**.
+- **Copy** 클릭하고 Wercker로 가서 **OCI_AUTH_TOKEN** 환경변수에 **붙여넣기** 하고 **Protected**를 체크하고, **Save** 클릭.
 
   ![](images/200/LabGuide200-8313bb92.png)
 
   ![](images/200/LabGuide200-bb187bd2.png)
 
-- Lastly, let's go back and look at the `DOCKER_REGISTRY` variable to ensure that we have specified the correct region. In the **OCI Console**, look in the top right corner for the currently selected region:
-
-  ![](images/LabGuide200-fd1aa1f3.png)
-
-  - If the region is `ashburn`, then you do not need to change anything. The URL `iad.ocir.io` is correct.
-
-  - If the region is not `ashburn`, replace the `iad` part of the `DOCKER_REGISTRY` environment variable to match your region:
-
-  ```
-  London = lhr
-  Frankfurt = fra
-  Phoenix = phx
-  Ashburn = iad
-  ```
-
-  - For example, if your region is `eu-frankfurt-1`, change the URL to `fra.ocir.io` and click the **save** button
-
-    ![](images/LabGuide200-cc8b640d.png)
-
-
-- Now we're ready to try out our workflow from start to finish. We could do that by making another commit on GitHub, since Wercker is monitoring our source code. We can also trigger a workflow execution right from Wercker. We'll see how in the next step.
-
-### **STEP 12**: Trigger a retry of the pipeline
-
-- On your Wercker application page in your browser, click the **Runs** tab. Your most recent run should have a successful build pipeline and a failed push-release pipeline. Click the **push-release** pipeline.
-
-  ![](images/200/LabGuide200-8591cf15.png)
-
-- Click the **Retry** button.
-
-  ![](images/200/LabGuide200-77bb35a3.png)
-
-- Click the **Runs** tab so you can monitor the execution of the pipeline. Within a minute or so, the deployment pipeline should complete successfully. Now we can use the Kubernetes dashboard to inspect and validate our deployment.
-
-  ![](images/200/42.png)
 
 ### **STEP 13**: Validate deployment
 
-- First we will validate that our Docker image is visible in the OCI Registry. In your **OCI Console** browser tab, select **Registry (OCIR)** from the navigation menu, under the Developer Services category.
+- 이제 모든 설정이 완료되었으므로 github에서 Commit에 의해 CI/CD 자동화를 테스트 볼 시간이다. 간단히 wercker.yml에서 **연필** 을 클릭해서 편집모드에서 빈 공백에 "enter"를 클릭한후 **Commit change** 를 클릭한다. 
 
-  ![](images/200/LabGuide200-f5114d8a.png)
+  ![](images/200/wercker-yml-modify.png)
+  ![](images/200/wercker-yml-enter.png)
 
-- Click on **twitter-feed** to expand the list of images, then click **master-xxxx** to view the details. This confirms that our image was pushed to the right place. The git branch and commit hash help us connect this image with the specific code version on GitHub.
+- 이제 Wercker 화면으로 돌아가서 Pipeline 실행 결과를 확인한다. 
+  ![](images/200/wercker-build.png)
 
-  ![](images/200/LabGuide200-2de08741.png)
-
-- If you prefer to use the command line as opposed to the web browser method of testing the service, run the following command to verify that our microservice is returning JSON data:
-
-  **Mac/Linux/Git Bash**
-  ```bash
-  export KUBECONFIG=~/container-workshop/kubeconfig
-  ./kubectl exec -it $(./kubectl get pod -l "app=twitter-feed" -o jsonpath='{.items[0].metadata.name}') -- /bin/sh -c '/usr/bin/curl -s http://$HOSTNAME:8080/statictweets | head -c 1000; echo'
-  ```
+- 애플리케이션 실행확인
 
   **Windows PowerShell**
   ```bash
   $env:KUBECONFIG="path\to\your\kubeconfig"
-  .\kubectl exec -it $(.\kubectl get pod -l "app=twitter-feed" -o jsonpath='{.items[0].metadata.name}') -- /bin/sh -c '/usr/bin/curl -s http://$HOSTNAME:8080/statictweets | head -c 1000; echo'
-  ```
-
-  - If you see JSON data returned, **skip to Step 14** where we will deploy the other components of our product catalog application. Otherwise, if the commands didn't work, you don't have PowerShell, or you prefer a browser-based interface, continue on:
-
-- In a terminal window, start the **kubectl proxy** using the following command. Your `KUBECONFIG` environment variable should still be set from a previous step. If not, reset it.
-
-  ```bash
   kubectl proxy
   ```
 
-- In a browser tab, navigate to the [**Kubernetes dashboard**](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)
 
-- You should see the overview page. In the pods section, you should see two twitter-feed pods running. Click the **name of one of the pods** to go to the detail page.
+- 브라우저에서 [**Kubernetes dashboard**] 실행(http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)
 
+- 왼쪽 Pods 메뉴에서 2개의 **twitter-feed** pod를 볼 수 있다. 더블클릭해서 자세한 정보를 볼 수 있다.
   ![](images/200/44.png)
 
-- On the pod detail page, in the top menu bar, click **Exec**. This will give us a remote shell on the pod where we can verify that our application is up and running.
-
-  ![](images/200/45.png)
-
-- In the shell that is displayed, **paste** the following command and press **Enter**.
-
-  **NOTE:** You may need to use ctrl-shift-v to paste. Alternatively, you can use the mouse-driven browser menu to paste the command.
-
-  `curl -s http://$HOSTNAME:8080/statictweets | head -c 100`
-
-- You should see some JSON data being returned by our twitter feed service. Our microservice has been deployed successfully! But the twitter feed service is just one part of our product catalog application. Let's deploy the rest of the application so we can validate that everything works together as expected. Leave this browser tab open, as we will use it in a later step.
-
-  ![](images/200/46.png)
-
-**NOTE**: You may be wondering why we had to use the Kubernetes remote terminal to test our application. Remember the kubernetes.yml file that we created earlier -- we specified a cluster-internal IP address for our twitter-feed service. This means that only other processes inside the cluster can reach our service. If we wanted to access our service from the internet, we could have used a load balancer instead.
-
-## Deploy and Test the Product Catalog Application
-
-### **STEP 14**: Download the Product Catalog Kubernetes YAML file
-
-- From a browser, navigate to your forked twitter-feed repository on GitHub. If you've closed the tab, you can get back by going to [GitHub](https://github.com/), clicking the **Repositories** tab at the top of the page, and clicking the **twitter-feed-oke** link.
-
-  ![](images/200/LabGuide200-b51c7f37.png)
-
-- Click on the **alpha-office-product-catalog.kubernetes.yml** file.
-
-  ![](images/200/47.png)
-
-- Right click on the **Raw** button and choose **Save Link As** or **Save As**. In the save file dialog box that appears, note the location of the file and click **Save**
-
-  ![](images/200/48.png)
-
-**NOTE**: This YAML file contains the configuration for a Kubernetes deployment and service, much like the configuration for our twitter feed microservice. In a normal development environment, the product catalog application would be managed by Wercker as well, so that builds and deploys would be automated. In this workshop, however, you will perform a one-off deployment of a pre-built Docker image containing the product catalog application from within the Kubernetes dashboard.
-
-### **STEP 15**: Deploy and test the Product Catalog using the Kubernetes dashboard
-
-- Switch back to your **Kubernetes dashboard** browser tab. If you have closed it, navigate to the Kubernetes dashboard at [**Kubernetes dashboard**](http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)
-
-- In the upper right corner of the dashboard, click **Create**.
-
-  ![](images/200/49.png)
-
-- Click the **Create From File** tab, then click the **three dots** button to browse for your file. In the dialog, select the YAML file you just downloaded from GitHub and click **Open**, then click **UPLOAD**.
-
-  ![](images/200/LabGuide200-5765b03c.png)
-
-- In the left side navigation menu, click **Overview**. You should see two new product-catalog-app pods being created and soon change state to Running.
-
-  ![](images/200/51.png)
-
-- Instead of a cluster-internal IP address, the product-catalog-service will be exposed to the internet via a load balancer. The load balancer will take a few minutes to be instantiated and configured. Let's check on its status--click **Services** from the left side menu, then click on the **product-catalog-service**.
+- Service 메뉴에서 **product-catalog-service**를 클릭해서 서비스의 자세한 정보를 볼 수 있다.
 
   ![](images/200/52.png)
 
-- On the service detail page, you will see a field called **External endpoints**. Once the load balancer has finished provisioning, the External endpoints field will be populated with a link to the product catalog application. If the link is not shown yet, wait a few minutes, refresh your browser, and check again. Once the link is displayed, **click it** to launch the site in a new tab.
+- **Details** 에서 **External endpoints**를 더블 클릭하면 지금 배포한 애플리케이션을 확인할 수 있다.
 
   ![](images/200/53.png)
 
-- You should see the product catalog site load successfully, validating that our new Kubernetes deployment and service were created correctly. Let's test the twitter feed functionality of the catalog. Click the first product, **Crayola New Markers**. The product's twitter feed should be displayed.
+- Alpha 문구의 제품 카탈로그 싸이트이다. **Crayola New Markers**를 클릭하면 해당 트위터의 피드를 볼 수 있다.
 
   ![](images/200/54.png)
 
-  **NOTE**: You may have noticed that we did not need to alter the pre-built product catalog container with the URLs of the twitter feed pods or service. The product catalog app makes use of Kubernetes DNS to resolve the service name (twitter-feed) into its IP address. Kubernetes DNS assigns a DNS name to every service defined in your cluster, so any service can be looked up by doing a DNS query for the name of the service (prefixed by _`namespace.`_ if the service is in a different namespace from the requester). The product catalog server uses the following JavaScript code to make an HTTP request to the twitter feed microservice:
-
-  `request('http://twitter-feed:30000/statictweets/color', function (error, response, body) { ... });`
-
-- Some tweets are indeed displayed, but they aren't relevant to this product. It looks like there is a bug in our twitter feed microservice! Continue on to the next lab to explore how to make bug fixes and updates to our microservice.
-
-**You are now ready to move to the next lab: [Lab 300](LabGuide300.md)**
+- 이렇게 Oracle의 쿠버네티스 서비스인 OKE와 wercker 를 통한 Container 기반의 CI/CD를 경험해 보았다. 

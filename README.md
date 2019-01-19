@@ -11,9 +11,9 @@
 
 
 ### Lab 100 - OKE를 이용한 k8s cluster provisioning
-    **[Lab 100으로](LabGuide100.md)**
+   - [Lab 100으로](LabGuide100.md)
 ### Lab 200 - Wercker를 이용한 Container 기반 Application의 CI/CD
-    **[Lab 200으로](LabGuide200.md)**
+   - [Lab 200으로](LabGuide200.md)
 
 
 # 참고 

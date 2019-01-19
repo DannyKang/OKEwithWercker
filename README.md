@@ -10,9 +10,9 @@
  - 이 Hands On은 두개의 Hands On Lab 으로 구성되어 있다.
 
 
-### Lab 100 - OKE를 이용한 k8s cluster provisioning
+### 1. Lab 100 - OKE를 이용한 k8s cluster provisioning
    - [Lab 100으로](LabGuide100.md)
-### Lab 200 - Wercker를 이용한 Container 기반 Application의 CI/CD
+### 2. Lab 200 - Wercker를 이용한 Container 기반 Application의 CI/CD
    - [Lab 200으로](LabGuide200.md)
 
 

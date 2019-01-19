@@ -470,7 +470,8 @@
   ```
 
 
-- 브라우저에서 [**Kubernetes dashboard**] 실행(http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/)
+- 브라우저에서 [**Kubernetes dashboard**] 실행  
+  http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
 
 - 왼쪽 Pods 메뉴에서 2개의 **twitter-feed** pod를 볼 수 있다. 더블클릭해서 자세한 정보를 볼 수 있다.
   ![](images/200/44.png)

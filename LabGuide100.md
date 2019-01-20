@@ -1,19 +1,3 @@
-# Containerize Your Java Microservice
-
-<!--![](images/100/header.png)  -->
-
-## 학습목표
-
-**자바 애플리케이션을 컨테이너로 만드는 쿠버네티스환경에 배표 하는 일련의 과정을 자동화한다.**
-
-> Wercker는 네덜란드식 발음으로는 **"베커"** 또는 영어식 발음 **"워커"** 로 부른다.  
-
-## 선행 준비 사항 
-
-이 Lab에서는 Github 계정이 필요합니다. 계정이 없으신 경우 아래 링크를 이용해 계정을 생성하세요.
-
-  -  [GitHub account](https://github.com/join)
-
 # OCI 콘솔을 이용한 쿠버네티스 클러스터 생성
 
 ## Oracle Cloud infrastructure 환경 설정

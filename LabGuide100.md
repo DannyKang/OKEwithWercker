@@ -51,7 +51,7 @@
 
     ![](images/200/LabGuide200-3d4a7471.png)
 
-  - Statement 박에에, `allow service OKE to manage all-resources in tenancy` 복사해서 입력 하고 **Add Statement** 클릭
+  - Statement 항목에, `allow service OKE to manage all-resources in tenancy` 복사해서 입력 하고 **Add Statement** 클릭
 
     ![](images/200/LabGuide200-bd5bcbd1.png)
 

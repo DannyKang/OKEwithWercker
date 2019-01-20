@@ -69,7 +69,7 @@
 
     ![](images/200/LabGuide200-2e2ab7ca.png)
 
-  - 데모를 간략히 하기 위해 선택된 그대로 Create 버튼을 클릭한다. 
+  - 데모를 간략히 하기 위해 선택된 그대로 **Create** 버튼을 클릭한다. 
 
     ![](images/LabGuide200-6ff14524.png)
     ![](images/LabGuide200-11191333.png)

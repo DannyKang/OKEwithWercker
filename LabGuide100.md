@@ -45,7 +45,7 @@
 
   -  **PSM-root-policy** 클릭
 
-    ![](images/200/LabGuide200-e67b7705.png)
+    ![](images/200/LabGuide200-a321171a.png)
 
   - **Add Policy Statement** 클릭
 

@@ -69,15 +69,14 @@
 
     ![](images/200/LabGuide200-2e2ab7ca.png)
 
-  - 데모를 간략히 하기 위해 선택된 그대로 **Create** 버튼을 클릭한다. 
-
-    ![](images/LabGuide200-6ff14524.png)
-    ![](images/LabGuide200-11191333.png)
-
+  - 데모를 간략히 하기 위해 선택된 그대로 Create 버튼을 클릭한다. 
     - 사용자의 필요에 따라 클러스터 설정을 추가로 설정할 수 있다.
     - 현재 2가지 버전의 k8s를 사용가능 v1.11.5, v1.10.11
     - 디폴드 옵션은 클러스터를 위한 VCN(Virtual Cloud Network), 3개의 서브넷과 2개의 로드 밸랜서 그리고 각 서브넷에 Worker Node VM(총 3개) 이 생성된다. 
     - Node Pool에 구성할 Worker Node 설정 가능
+    
+    ![](images/LabGuide200-6ff14524.png)
+    ![](images/LabGuide200-11191333.png)    
 
   - **Create** 클릭하면 클러스터 디테일 화면이 나온다. 
 

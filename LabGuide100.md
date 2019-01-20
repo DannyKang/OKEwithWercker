@@ -57,7 +57,7 @@
 
 ### **STEP 3**: OCI 콘솔을 이용한 쿠버네티스 클러스터 생성
 
-  - 이제 쿠버네티스 클러스터를 만들 준비가 됐다. OCI 콘솔 메뉴에서 **Developer Services->Container Clusters (OKE)**를 선택.
+  - 이제 쿠버네티스 클러스터를 만들 준비가 됐다. OCI 콘솔 메뉴에서 **Developer Services** -> **Container Clusters (OKE)**를 선택.
 
     ![](images/200/LabGuide200-5c0a2b4c.png)
 

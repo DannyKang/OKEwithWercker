@@ -98,7 +98,7 @@
 
   ![](images/100/19.png)
 
-- 이제 파이프라인의 환경변수를 입력하는 항목은 비워둔다. **Workflows** 탭을 클릭해서 workflow editor 창으로 이동.
+- 일단은, 생성된 파이프라인의 환경변수를 입력하는 항목은 비워둔다. **Workflows** 탭을 클릭해서 workflow editor 창으로 이동.
 
   ![](images/100/LabGuide100-6f799cee.png)
 

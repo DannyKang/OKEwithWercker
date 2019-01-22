@@ -221,7 +221,7 @@
 
 - 이 섹션에서는 두번째 파이프라인인 **push-release** 에서 실행할 내용을 정의한다. **internal/docker-push** 스텝은 내부 Docker Registry에 빌드한 Docker Image를 저장하는 스텝이다. 자세한 사항은 다음 참조 (http://devcenter.wercker.com/docs/steps/internal-steps#docker-push).
 
-- 페이지 제일 밑에 **Commit changes** 클릭하여 
+- 페이지 제일 밑에 **Commit changes** 클릭하여 저장
 
   ![](images/100/29.png)
 

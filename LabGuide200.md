@@ -194,9 +194,9 @@
   - `DOCKER_REGISTRY`에는 **iad.ocir.io** 를 입력한다. 
 
 
-### **STEP 7**: Wercker push 파이프라인 정의 
+### **STEP 7**: Wercker push-release 파이프라인 정의 
 
-- Github 화면에서 **wercker.yml** 파일의 **연필모양 아이콘**  클릭.
+- Github 화면에서 **wercker.yml** 파일을 클릭하고, 수정하기 위해  **연필모양 아이콘**  클릭.
 
   ![](images/100/LabGuide100-72ec3350.png)
 

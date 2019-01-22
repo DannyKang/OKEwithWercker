@@ -65,7 +65,7 @@
 
   ![](images/100/7.png)
 
-- 자신을 레포지터리에서 **twitter-feed-oke** 을 선택하고 **Next** 클릭
+- 자신의 GitHub Repository 중에서 **twitter-feed-oke** 을 선택하고 **Next** 클릭
 
   ![](images/200/wercker-select-repo.png)
 

@@ -310,9 +310,9 @@
 
     ![](images/200/29.png)
 
-  - Commit을 클릭하면 Wercker가 트리거되서 새로운 워크플로우가 실행된다. 
+  - Commit을 클릭하면 Wercker가 트리거되서 워크플로우가 실행된다. 
 
-### **STEP 9**: Wercker Deployment Pipelines 설정
+### **STEP 10**: Wercker Deployment Pipelines 설정
 
   - **wercker.yml** 파일을 클릭하고 **연필** 버튼을 클릭
 
@@ -373,7 +373,7 @@
   ![](images/200/29.png)
 
 
-### **STEP 10**: Wercker에서 deployment pipelines 설정
+### **STEP 11**: Wercker에서 deployment pipelines 설정
 
 -  **[Wercker](https://app.wercker.com)**에서 **twitter-feed** 애플리케이션 선택.
 
@@ -397,7 +397,7 @@
   ![](images/200/34.png)
 
 
-### **STEP 11**: Wercker 환경변수 설정
+### **STEP 12**: Wercker 환경변수 설정
 
 - **KUBERNETES_AUTH_TOKEN** 설정, **terminal window**에서 아래 명령어 실행
 

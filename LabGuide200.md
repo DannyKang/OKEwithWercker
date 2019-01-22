@@ -379,15 +379,15 @@
 
   ![](images/200/30.png)
 
--  **Workflows** 탑에서 **Add new pipeline** 버튼 클릭.
+-  **Workflows** 탭에서 **Add new pipeline** 버튼 클릭.
 
   ![](images/200/31.png)
 
--  **deploy-to-cluster** 입력 . **Create** 클릭.
+-  이름으로 **deploy-to-cluster** 입력 . **Create** 클릭.
 
   ![](images/200/32.png)
 
-- Click the **Workflows** tab again to get back to the editor.
+- Workflow 에디터로 돌아아기 위해 **Workflows** 탭 클릭
 
 - **push-release**  파이프라인 옆 **플러스** 버튼 클릭해서 **deploy-to-cluster** 추가 하고 **Add** 클릭
 

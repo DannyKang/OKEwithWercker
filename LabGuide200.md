@@ -399,12 +399,12 @@
 
 ### **STEP 12**: Wercker 환경변수 설정
 
-- **KUBERNETES_AUTH_TOKEN** 설정, **terminal window**에서 아래 명령어 실행
+- **KUBERNETES_AUTH_TOKEN** 확인
 
   **Windows**
     ```bash
     cd %USERPROFILE%\container-workshop
-    cat kubeconfig | grep token | awk '{print $2}'
+    kubeconfig 파일을 열어서 확인
     ```
 
     ![](images/LabGuide200-406fe845.png)
@@ -421,11 +421,12 @@
 
   ![](images/200/LabGuide200-7a3d011b.png)
 
-- **KUBERNETES_MASTER** 설정, **terminal window**에서 아래 명령어 실행
+- **KUBERNETES_MASTER** 주소 확인
 
   **Windows**
     ```bash
-    kubectl.exe config view | grep server | cut -f 2- -d ":" | tr -d " "
+    cd %USERPROFILE%\container-workshop
+    kubeconfig 파일을 열어서 확인
     ```
 
   **Mac/Linux**

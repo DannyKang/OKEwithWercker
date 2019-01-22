@@ -483,8 +483,8 @@
 
   **Windows PowerShell**
   ```bash
-  $set KUBECONIFIG=$HOME\Desktop\OKE-HandsOn\config
-  kubectl proxy
+  > set KUBECONIFIG=$HOME\Desktop\OKE-HandsOn\config
+  > kubectl proxy
   ```
 
 

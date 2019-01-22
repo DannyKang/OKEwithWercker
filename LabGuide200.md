@@ -82,11 +82,11 @@
 
 ### **STEP 4**: Pipelines Workflow 설정
 
-- 새로 생성된 애플리케이션의 **Runs** 탭으로 이동, 이 Runs에서는 애플리케이션의 실행 이력을 볼 수 있다.  
+- 새로 생성된 애플리케이션의 **Runs** 탭으로 이동, 이 Runs 탭에서는 애플리케이션의 실행 이력을 볼 수 있다.  
 
   ![](images/100/16.png)
 
-- **Workflows** 탭을 이동. 이 워크플로우는 Git commit에 의해 기동(trigger)되며, **build** 라고 하는 파이프라인을 실행
+- **Workflows** 탭을 이동. 이 워크플로우는 Git commit에 의해 기동(trigger)되며, 현재는 기본 생성된 **build** 라고 하는 파이프라인을 실행
 
   ![](images/100/17.png)
 

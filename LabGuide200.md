@@ -444,10 +444,6 @@
 
     ![](images/200/LabGuide200-9d5e858e.png)
 
-- **OCI_AUTH_TOKEN** 생성, OCI Registry (OCIR) 에 접근하기 위한 인증 토근 생성 
-
-  ![](images/200/LabGuide200-ad86d83b.png)
-
 - **OCI Console** 브라우저에서 **Identity->Users** 에서 **View User Details** 클릭
 
   ![](images/LabGuide200-f1749ef3.png)
@@ -464,9 +460,11 @@
 
   ![](images/200/LabGuide200-a04556fa.png)
 
-- **Copy** 클릭하고 Wercker로 가서 **OCI_AUTH_TOKEN** 환경변수에 **붙여넣기** 하고 **Protected**를 체크하고, **Save** 클릭.
+- **Copy** 클릭
 
   ![](images/200/LabGuide200-8313bb92.png)
+
+- Wercker의 **Environment** 탭에서 **OCI_AUTH_TOKEN** 환경변수에 **붙여넣기** 하고 **Protected**를 체크하고, **Add** 클릭.
 
   ![](images/200/LabGuide200-bb187bd2.png)
 

@@ -379,7 +379,7 @@
 
   ![](images/200/30.png)
 
--  **Workflows** 탭에서 **Add new pipeline** 버튼 클릭.
+- **Workflows** 탭에서 **Add new pipeline** 버튼 클릭.
 
   ![](images/200/31.png)
 

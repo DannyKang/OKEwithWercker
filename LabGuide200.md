@@ -429,7 +429,7 @@
     kubeconfig 파일을 열어서 확인
     ```
     
-    ![](images/LabGuide200-oke-server-url.png)    
+    ![](images/200/LabGuide200-oke-server-url.png)
 
   **Mac/Linux**
     ```bash

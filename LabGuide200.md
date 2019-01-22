@@ -433,7 +433,7 @@
     echo $(./kubectl config view | grep server | cut -f 2- -d ":" | tr -d " ")
     ```
 
-- **KUBERNETES_MASTER** Key에 위에서 복사한 값을 추가하다. 이때 꼭 **https://** 를 추가해야 한다. 
+- Wercker의 **Environment** 탭에서 **KUBERNETES_MASTER** Key에 위에서 복사한 값을 추가하다. 이때 꼭 **https://** 를 추가해야 한다. 
 
   ![](images/200/55.png)
 

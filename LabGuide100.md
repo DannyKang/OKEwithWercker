@@ -79,7 +79,7 @@
     - 디폴드 옵션은 클러스터를 위한 VCN(Virtual Cloud Network), 3개의 서브넷과 2개의 로드 밸랜서 그리고 각 서브넷에 Worker Node VM(총 3개) 이 생성된다. 
     - Node Pool에 구성할 Worker Node 설정 가능    
 
-  - **Create** 클릭하면 클러스터 디테일 화면이 나온다. 
+  - **Create** 클릭하면 클러스터와 연관된 자원들이 하나씩 생성되면서 클러스터 생성정보가 표시된다. 확인 후 **Close** 클릭
 
 **[Lab 200으로](LabGuide200.md)**
 

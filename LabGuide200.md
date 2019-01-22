@@ -310,9 +310,9 @@
 
     ![](images/200/29.png)
 
-  - Commit을 클릭하면 Wercker가 트리거되서 워크플로우가 실행된다. 
+  - Commit을 클릭하면 Wercker가 트리거되서 워크플로우가 실행된다.
 
-### **STEP 10**: Wercker Deployment Pipelines 설정
+### **STEP 10**: wercker.yml 파일에 쿠버네티스 배포용 파이프라인 정의
 
   - **wercker.yml** 파일을 클릭하고 **연필** 버튼을 클릭
 

@@ -428,6 +428,8 @@
     cd %USERPROFILE%\container-workshop
     kubeconfig 파일을 열어서 확인
     ```
+    
+    ![](images/LabGuide200-oke-server-url.png)    
 
   **Mac/Linux**
     ```bash

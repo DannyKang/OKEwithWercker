@@ -25,6 +25,10 @@
 - 오른쪽 상단의 **Fork** 를 클릭하고 GitHub 계정으로 로그인 한다. 
 
   ![](images/100/1.png)
+  
+- 오른쪽 상단의 **Fork** 를 클릭하고 자신의 GitHub으로 Fork합니다. 
+
+  ![](images/100/1-1.png)  
 
 ### **STEP 2**: Wercker 계정 생성하기 
 

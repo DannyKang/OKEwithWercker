@@ -86,7 +86,7 @@
 
   ![](images/100/16.png)
 
-- **Workflows** 탭을 이동. 이 워크플로우는 Git commit에 의해 기동(trigger)되며, 현재는 기본 생성된 **build** 라고 하는 파이프라인을 실행
+- **Workflows** 탭을 이동. 이 워크플로우는 Git commit에 의해 기동(trigger)되며, 현재는 기본 생성된 **build** 라고 하는 파이프라인만을 실행
 
   ![](images/100/17.png)
 

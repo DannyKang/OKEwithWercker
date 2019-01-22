@@ -200,7 +200,7 @@
 
   ![](images/100/LabGuide100-72ec3350.png)
 
-- 제일 밑에 아래 파일을 **붙여넣기paste** 한다.
+- 제일 밑에 아래 파일을 아래 내용을 복사해서 **붙여넣기** 한다.
 
     ```yaml
     #Push the docker image with our built and tested application to the Oracle Container Registry

@@ -69,7 +69,7 @@
 
   ![](images/200/wercker-select-repo.png)
 
-- default (without ssh key) 설정대로 하고 **Next** 클릭
+- default (without using SSH key)을 클릭하고 **Next** 클릭
 
   ![](images/100/9.png)
 

@@ -26,7 +26,7 @@
 
   ![](images/100/1.png)
   
-- 오른쪽 상단의 **Fork** 를 클릭하고 자신의 GitHub으로 Fork합니다. 
+- 오른쪽 상단의 **Fork** 를 한번 더 클릭하고 자신의 GitHub으로 Fork합니다. 
 
   ![](images/100/1-1.png)  
 

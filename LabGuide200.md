@@ -145,7 +145,7 @@
 
   ![](images/LabGuide100-f5af715a.png)
 
-- YAML 파일의 첫번째 섹션은 docker base image를 정의하며, 두번째 섹션은 **Build** 파이프라인을 정의한다. 이 **Build** 파이프라인은 두 개의 **steps** 로 구성되어 있다. 첫번째 **install-packages** 는 필요한 패키지를 설치하고, 두번째는 shell 스크립트를 실행한다. 
+- YAML 파일의 첫번째 섹션은 docker base image를 정의하며, 두번째 섹션은 **Build** 파이프라인에서 실행할 을 정의한다. 이 **Build** 파이프라인은 두 개의 **steps** 로 구성되어 있다. 첫번째 **install-packages** 는 필요한 패키지를 설치하고, 두번째는 shell 스크립트를 실행한다. 
 
 - 화면의 제일 밑에 **Commit new file** 버튼을 클릭한다. 
 

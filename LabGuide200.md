@@ -302,7 +302,7 @@
       type: ClusterIP
     ---
     ```
-  >이 환경 설정 파일 쿠버네티스의 **Deployment**와 **Service** 를 정의하는 파일 입니다. **Deployment** 섹션에서는 (`replicas: 2`)와 같이 Pod를 2개 띄우도록 설정합니다. **Service**에서는 애플리케이션을 어떻게 외부에 노출할 것인가를 나타낸다. (`type: ClusterIP`)를 설정하여, cluster-internal IP 롤 설정하여 이 애플리케이션(twitter feed)는 클러스터 내부에서만 접근이 가능하다. y that our twitter feed is deployed properly -- we'll see how in a later step.
+  >이 환경 설정 파일은 쿠버네티스의 **Deployment**와 **Service** 를 정의하는 파일입니다. **Deployment** 섹션에서는 (`replicas: 2`)와 같이 Pod를 2개 띄우도록 설정합니다. **Service**에서는 애플리케이션을 어떻게 외부에 노출할 것인가를 나타낸다. (`type: ClusterIP`)를 설정하여, cluster-internal IP 롤 설정하여 이 애플리케이션(twitter feed)는 클러스터 내부에서만 접근이 가능하다.
 
   > 쿠버네티스에서는 설정을 일반적으로 `.yml` 파일 형식으로 저장한다.   `.template` 파일은 쿠버네티스 컨셉은 아니고 Wercker가 환경변수를 설정하기 위해 사용한다. Wercker 내에서 **bash-template** 스텝에서 `.template` 파일속의 환경변수 `${variables}` 설정하게 된다. 
 

@@ -44,20 +44,20 @@
     ![](images/200/LabGuide200-a321171a.png)
 
   -  **PSM-root-policy** 클릭
-
-    ![](images/200/LabGuide200-e67b7705.png)
+  
+     ![](images/200/LabGuide200-e67b7705.png)
 
   - **Add Policy Statement** 클릭
 
     ![](images/200/LabGuide200-3d4a7471.png)
 
-  - Statement 박에에, `allow service OKE to manage all-resources in tenancy` 복사해서 입력 하고 **Add Statement** 클릭
+  - Statement 항목에, `allow service OKE to manage all-resources in tenancy` 복사해서 입력 하고 **Add Statement** 클릭
 
     ![](images/200/LabGuide200-bd5bcbd1.png)
 
 ### **STEP 3**: OCI 콘솔을 이용한 쿠버네티스 클러스터 생성
 
-  - 이제 쿠버네티스 클러스터를 만들 준비가 됐다. OCI 콘솔 메뉴에서 **Developer Services->Container Clusters (OKE)**를 선택.
+  - 이제 쿠버네티스 클러스터를 만들 준비가 됐다. OCI 콘솔 메뉴에서 **Developer Services** -> **Container Clusters (OKE)** 를 선택.
 
     ![](images/200/LabGuide200-5c0a2b4c.png)
 
@@ -69,17 +69,17 @@
 
     ![](images/200/LabGuide200-2e2ab7ca.png)
 
-  - 데모를 간략히 하기 위해 선택된 그대로 Create 버튼을 클릭한다. 
+  - 데모를 간략히 하기 위해 선택된 그대로 사용합니다.
 
     ![](images/LabGuide200-6ff14524.png)
-    ![](images/LabGuide200-11191333.png)
-
+    ![](images/LabGuide200-11191333.png)    
+    
     - 사용자의 필요에 따라 클러스터 설정을 추가로 설정할 수 있다.
     - 현재 2가지 버전의 k8s를 사용가능 v1.11.5, v1.10.11
     - 디폴드 옵션은 클러스터를 위한 VCN(Virtual Cloud Network), 3개의 서브넷과 2개의 로드 밸랜서 그리고 각 서브넷에 Worker Node VM(총 3개) 이 생성된다. 
-    - Node Pool에 구성할 Worker Node 설정 가능
+    - Node Pool에 구성할 Worker Node 설정 가능    
 
-  - **Create** 클릭하면 클러스터 디테일 화면이 나온다. 
+  - **Create** 클릭하면 클러스터와 연관된 자원들이 하나씩 생성되면서 클러스터 생성정보가 표시된다. 확인 후 **Close** 클릭
 
 **[Lab 200으로](LabGuide200.md)**
 

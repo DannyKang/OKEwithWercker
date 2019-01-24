@@ -3,7 +3,7 @@
 
 ## 학습목표
 
-**자바 애플리케이션을 컨테이너로 만드는 쿠버네티스환경에 배표 하는 일련의 과정을 자동화한다.**
+**Wercker를 사용하여 자바 애플리케이션을 컨테이너로 만드는 쿠버네티스환경에 배포 하는 일련의 과정을 자동화한다.**
 
 > Wercker는 네덜란드식 발음으로는 **"베커"** 또는 영어식 발음 **"워커"** 로 부른다.  
 
@@ -25,6 +25,10 @@
 - 오른쪽 상단의 **Fork** 를 클릭하고 GitHub 계정으로 로그인 한다. 
 
   ![](images/100/1.png)
+  
+- 오른쪽 상단의 **Fork** 를 한번 더 클릭하고 자신의 GitHub으로 Fork합니다. 
+
+  ![](images/100/1-1.png)  
 
 ### **STEP 2**: Wercker 계정 생성하기 
 
@@ -57,15 +61,15 @@
   ![](images/200/wercker-add-app.png)
 
 
-- default 로 설정하고 **your account**  **GitHub**를 설정하고 **Next** 클릭
+- default 로 설정하고 소스코드를 가져올 대상을 **GitHub**으로 설정하고 **Next** 클릭
 
   ![](images/100/7.png)
 
-- 자신을 레포지터리에서 **twitter-feed-oke** 을 선택하고 **Next** 클릭
+- 자신의 GitHub Repository 중에서 **twitter-feed-oke** 을 선택하고 **Next** 클릭
 
   ![](images/200/wercker-select-repo.png)
 
-- default (without ssh key) 설정대로 하고 **Next** 클릭
+- default (without using SSH key)을 클릭하고 **Next** 클릭
 
   ![](images/100/9.png)
 
@@ -78,11 +82,11 @@
 
 ### **STEP 4**: Pipelines Workflow 설정
 
-- 새로 생성된 애플리케이션의 **Runs** 탭으로 이동, 이 Runs에서는 애플리케이션의 실행 이력을 볼 수 있다.  
+- 새로 생성된 애플리케이션의 **Runs** 탭으로 이동, 이 Runs 탭에서는 애플리케이션의 실행 이력을 볼 수 있다.  
 
   ![](images/100/16.png)
 
-- **Workflows** 탭을 이동. 이 워크플로우는 Git commit에 의해 기동(trigger)되며, **build** 라고 하는 파이프라인을 실행
+- **Workflows** 탭을 이동. 이 워크플로우는 Git commit에 의해 기동(trigger)되며, 현재는 기본 생성된 **build** 라고 하는 파이프라인만을 실행
 
   ![](images/100/17.png)
 
@@ -94,7 +98,7 @@
 
   ![](images/100/19.png)
 
-- 이제 파이프라인의 환경변수를 입력하는 항목은 비워둔다. **Workflows** 탭을 클릭해서 workflow editor 창으로 이동.
+- 일단은, 생성된 파이프라인의 환경변수를 입력하는 항목은 비워둔다. **Workflows** 탭을 클릭해서 workflow editor 창으로 이동.
 
   ![](images/100/LabGuide100-6f799cee.png)
 
@@ -141,7 +145,7 @@
 
   ![](images/LabGuide100-f5af715a.png)
 
-- YAML 파일의 첫번째 섹션은 docker base image를 정의하며, 두번째 섹션은 우리가 정의한 **Build** 파이프라인을 실행하도록 한다. 이 **Build** 파이프라인은 두개의 **steps** 로 구성되어 있다. 하나는  **install-packages** 필요한 패키지를 설치하고, 두번째는 shell 스크립트를 실행한다. 
+- YAML 파일의 첫번째 섹션은 docker base image를 정의하며, 두번째 섹션은 **Build** 파이프라인에서 실행할 것들을 정의한다. 이 **Build** 파이프라인은 두 개의 **steps** 로 구성되어 있다. 첫번째 **install-packages** 는 필요한 패키지를 설치하고, 두번째는 shell 스크립트를 실행한다. 
 
 - 화면의 제일 밑에 **Commit new file** 버튼을 클릭한다. 
 
@@ -151,7 +155,7 @@
 
   ![](images/100/24.png)
 
-- **build** 파이프라인은 성공하지만, **push-release** 파이프라인은 아직 설정을 하지 않았기 때문에 실패한다. 
+- **build** 파이프라인은 성공하지만, **push-release** 파이프라인은 아직 설정을 하지 않았기 때문에 실패한다. **그림과 같이 실패 표시까지는 시간이 좀 걸리므로 다음으로 넘어간다.**
 
   ![](images/100/25.png)
 
@@ -190,13 +194,13 @@
   - `DOCKER_REGISTRY`에는 **iad.ocir.io** 를 입력한다. 
 
 
-### **STEP 7**: Wercker push 파이프라인 정의 
+### **STEP 7**: Wercker push-release 파이프라인 정의 
 
-- Github 화면에서 **wercker.yml** 파일의 **연필모양 아이콘**  클릭.
+- Github 화면에서 **wercker.yml** 파일을 클릭하고, 수정하기 위해  **연필모양 아이콘**  클릭.
 
   ![](images/100/LabGuide100-72ec3350.png)
 
-- 제일 밑에 아래 파일을 **붙여넣기paste** 한다.
+- 제일 밑에 아래 파일을 아래 내용을 복사해서 **붙여넣기** 한다.
 
     ```yaml
     #Push the docker image with our built and tested application to the Oracle Container Registry
@@ -215,9 +219,9 @@
 
   ![](images/100/LabGuide100-0274b607.png)
 
-- 이 섹션에서는 두번째 파이프라인인 **push-release**를 정의한다. **internal/docker-push** 스택은 내부 Docker Registry에 빌드한 Docker Image를 저장하는 스탭이다. 자세한 사항은 다음 참조 (http://devcenter.wercker.com/docs/steps/internal-steps#docker-push).
+- 이 섹션에서는 두번째 파이프라인인 **push-release** 에서 실행할 내용을 정의한다. **internal/docker-push** 스텝은 내부 Docker Registry에 빌드한 Docker Image를 저장하는 스텝이다. 자세한 사항은 다음 참조 (http://devcenter.wercker.com/docs/steps/internal-steps#docker-push).
 
-- 페이제 제일 밑에 **Commit changes** 클릭
+- 페이지 제일 밑에 **Commit changes** 클릭하여 저장
 
   ![](images/100/29.png)
 
@@ -298,7 +302,7 @@
       type: ClusterIP
     ---
     ```
-  >이 환경 설정 파일 쿠버네티스의 **Deployment**와 **Service** 를 정의하는 파일 입니다. **Deployment** 섹션에서는 (`replicas: 2`)와 같이 Pod를 2개 띄우도록 설정합니다. **Service**에서는 애플리케이션을 어떻게 외부에 노출할 것인가를 나타낸다. (`type: ClusterIP`)를 설정하여, cluster-internal IP 롤 설정하여 이 애플리케이션(twitter feed)는 클러스터 내부에서만 접근이 가능하다. y that our twitter feed is deployed properly -- we'll see how in a later step.
+  >이 환경 설정 파일은 쿠버네티스의 **Deployment**와 **Service** 를 정의하는 파일입니다. **Deployment** 섹션에서는 (`replicas: 2`)와 같이 Pod를 2개 띄우도록 설정합니다. **Service**에서는 애플리케이션을 어떻게 외부에 노출할 것인가를 나타낸다. (`type: ClusterIP`)를 설정하여, cluster-internal IP 롤 설정하여 이 애플리케이션(twitter feed)는 클러스터 내부에서만 접근이 가능하다.
 
   > 쿠버네티스에서는 설정을 일반적으로 `.yml` 파일 형식으로 저장한다.   `.template` 파일은 쿠버네티스 컨셉은 아니고 Wercker가 환경변수를 설정하기 위해 사용한다. Wercker 내에서 **bash-template** 스텝에서 `.template` 파일속의 환경변수 `${variables}` 설정하게 된다. 
 
@@ -306,9 +310,9 @@
 
     ![](images/200/29.png)
 
-  - Commit을 클릭하면 Wercker가 트리거되서 새로운 워크플로우가 실행된다. 
+  - Commit을 클릭하면 Wercker가 트리거되서 워크플로우가 실행된다.
 
-### **STEP 9**: Wercker Deployment Pipelines 설정
+### **STEP 10**: wercker.yml 파일에 쿠버네티스 배포용 파이프라인 정의
 
   - **wercker.yml** 파일을 클릭하고 **연필** 버튼을 클릭
 
@@ -369,38 +373,38 @@
   ![](images/200/29.png)
 
 
-### **STEP 10**: Wercker에서 deployment pipelines 설정
+### **STEP 11**: Wercker에서 deployment pipelines 설정
 
 -  **[Wercker](https://app.wercker.com)**에서 **twitter-feed** 애플리케이션 선택.
 
   ![](images/200/30.png)
 
--  **Workflows** 탑에서 **Add new pipeline** 버튼 클릭.
+- **Workflows** 탭에서 **Add new pipeline** 버튼 클릭.
 
   ![](images/200/31.png)
 
--  **deploy-to-cluster** 입력 . **Create** 클릭.
+-  이름으로 **deploy-to-cluster** 입력 . **Create** 클릭.
 
   ![](images/200/32.png)
 
-- Click the **Workflows** tab again to get back to the editor.
+- Workflow 에디터로 돌아아기 위해 **Workflows** 탭 클릭
 
 - **push-release**  파이프라인 옆 **플러스** 버튼 클릭해서 **deploy-to-cluster** 추가 하고 **Add** 클릭
 
   ![](images/200/33.png)
 
-- 이제 Workflow에 3개의 파이프라인아 아래와 같이 보인다. 
+- 이제 Workflow에 3개의 파이프라인이 아래와 같이 보인다. 
   ![](images/200/34.png)
 
 
-### **STEP 11**: Wercker 환경변수 설정
+### **STEP 12**: Wercker 환경변수 설정
 
-- **KUBERNETES_AUTH_TOKEN** 설정, **terminal window**에서 아래 명령어 실행
+- **KUBERNETES_AUTH_TOKEN** 확인
 
   **Windows**
     ```bash
     cd %USERPROFILE%\container-workshop
-    cat kubeconfig | grep token | awk '{print $2}'
+    kubeconfig 파일을 열어서 확인
     ```
 
     ![](images/LabGuide200-406fe845.png)
@@ -417,29 +421,28 @@
 
   ![](images/200/LabGuide200-7a3d011b.png)
 
-- **KUBERNETES_MASTER** 설정, **terminal window**에서 아래 명령어 실행
+- **KUBERNETES_MASTER** 주소 확인
 
   **Windows**
     ```bash
-    kubectl.exe config view | grep server | cut -f 2- -d ":" | tr -d " "
+    cd %USERPROFILE%\container-workshop
+    kubeconfig 파일을 열어서 확인
     ```
+    
+    ![](images/200/LabGuide200-oke-server-url.png)
 
   **Mac/Linux**
     ```bash
     echo $(./kubectl config view | grep server | cut -f 2- -d ":" | tr -d " ")
     ```
 
-- **KUBERNETES_MASTER** Key에 위에서 복사한 값을 추가하다. 이때 꼭 **https://** 를 추가해야 한다. 
+- Wercker의 **Environment** 탭에서 **KUBERNETES_MASTER** Key에 위에서 복사한 값을 추가하다. 이때 꼭 **https://** 를 추가해야 한다. 
 
   ![](images/200/55.png)
 
   **NOTE**: OCI 콘솔의 OKE 페이지에서도 k8s master정보를 찾을 수 있다. 
 
     ![](images/200/LabGuide200-9d5e858e.png)
-
-- **OCI_AUTH_TOKEN** 생성, OCI Registry (OCIR) 에 접근하기 위한 인증 토근 생성 
-
-  ![](images/200/LabGuide200-ad86d83b.png)
 
 - **OCI Console** 브라우저에서 **Identity->Users** 에서 **View User Details** 클릭
 
@@ -457,9 +460,11 @@
 
   ![](images/200/LabGuide200-a04556fa.png)
 
-- **Copy** 클릭하고 Wercker로 가서 **OCI_AUTH_TOKEN** 환경변수에 **붙여넣기** 하고 **Protected**를 체크하고, **Save** 클릭.
+- **Copy** 클릭
 
   ![](images/200/LabGuide200-8313bb92.png)
+
+- Wercker의 **Environment** 탭에서 **OCI_AUTH_TOKEN** 환경변수에 **붙여넣기** 하고 **Protected**를 체크하고, **Add** 클릭.
 
   ![](images/200/LabGuide200-bb187bd2.png)
 
@@ -478,13 +483,16 @@
 
   **Windows PowerShell**
   ```bash
-  $set KUBECONIFIG=$HOME\Desktop\OKE-HandsOn\config
-  kubectl proxy
+  > set KUBECONIFIG=$HOME\Desktop\OKE-HandsOn\config
+  > kubectl proxy
   ```
 
 
 - 브라우저에서 [**Kubernetes dashboard**] 실행  
   http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+
+- 로컬에 있는 kubeconfig을 선택하고 사인하기
+  ![](images/200/k8s_dashboard_signin.png)
 
 - 왼쪽 Pods 메뉴에서 2개의 **twitter-feed** pod를 볼 수 있다. 더블클릭해서 자세한 정보를 볼 수 있다.
   ![](images/200/44.png)

@@ -61,7 +61,7 @@
   ![](images/200/wercker-add-app.png)
 
 
-- default 로 설정하고 소스코드를 가져올 대상을 **GitHub**를 설정하고 **Next** 클릭
+- default 로 설정하고 소스코드를 가져올 대상을 **GitHub**으로 설정하고 **Next** 클릭
 
   ![](images/100/7.png)
 

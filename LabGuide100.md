@@ -43,7 +43,7 @@
 
   -  **Create Compartment** 클릭
 
-    ![](images/200/compartment.png)
+   ![](images/200/7.png)
 
   - **Name** 항목에 `Demo`를 입력하고 Description 항목에는 원하는 설명을 넣는다.  
 

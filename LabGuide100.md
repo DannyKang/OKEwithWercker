@@ -33,7 +33,23 @@
 
   ![](images/200/5.png)
 
-### **STEP 2**: Add a Policy Statement for OKE
+### **STEP 2**: 쿠버네티스 노드를 위한 컴파트먼트(Compartment) 생성
+
+ 컴파트먼트는 OCI 테넌시의 리소스를 나누는 단위로 컴파트먼트내의 리소는 권한에 따라 접근이 가능하며 서로 다른 컴파트먼트끼라는 분리된다. 
+
+-  **hamburger icon** 를 클릭하여 **Identity** 메뉴에  **Compartments**를 클릭
+
+  ![](images/200/LabGuide200-c32a35b9.png)
+
+  -  **Create Compartment** 클릭
+
+   ![](images/200/7.png)
+
+  - **Name** 항목에 `Demo`를 입력하고 Description 항목에는 원하는 설명을 넣는다.  
+
+    ![](images/LabGuide200-2b3b6b30.png)
+
+### **STEP 3**: Add a Policy Statement for OKE
 
   - 쿠버네티스 서비스 생성하기 전에 명시적으로 policy를 추가해야 한다. OCI 메뉴에서 **Identity->Policies** 선택
 
@@ -55,7 +71,8 @@
 
     ![](images/200/LabGuide200-bd5bcbd1.png)
 
-### **STEP 3**: OCI 콘솔을 이용한 쿠버네티스 클러스터 생성
+
+### **STEP 4**: OCI 콘솔을 이용한 쿠버네티스 클러스터 생성
 
   - 이제 쿠버네티스 클러스터를 만들 준비가 됐다. OCI 콘솔 메뉴에서 **Developer Services** -> **Container Clusters (OKE)** 를 선택.
 

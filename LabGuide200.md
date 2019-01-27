@@ -1,15 +1,15 @@
 
-# 자바 애플리케이션을 컨테이너화하고 빌드 자동화하기 
+# 자바 애플리케이션을 컨테이너화하고 빌드 및 디폴로이 자동화하기 
 
 ## 학습목표
 
-**Wercker를 사용하여 자바 애플리케이션을 컨테이너로 만드는 쿠버네티스환경에 배포 하는 일련의 과정을 자동화한다.**
+**컨테이너 기반 CI/CD 툴인 Wercker를 사용하여 자바 애플리케이션을 컨테이너로 빌드하고 쿠버네티스환경에 배포 하는 일련의 과정을 자동화한다.**
 
-> Wercker는 네덜란드식 발음으로는 **"베커"** 또는 영어식 발음 **"워커"** 로 부른다.  
+> Wercker는 네덜란드식 발음으로는 **"베커"**로, 영어식 발음으로는 **"워커"** 로 부른다.  
 
 ## 선행 준비 사항 
 
-이 Lab에서는 Github 계정이 필요합니다. 계정이 없으신 경우 아래 링크를 이용해 계정을 생성하세요.
+이 Lab에서는 Github 계정이 필요하다. 계정이 없으신 경우 아래 링크를 이용해 계정을 생성한다. 
 
   -  [GitHub account](https://github.com/join)
 
@@ -26,14 +26,14 @@
 
   ![](images/100/1.png)
   
-- 오른쪽 상단의 **Fork** 를 한번 더 클릭하고 자신의 GitHub으로 Fork합니다. 
+- 오른쪽 상단의 **Fork** 를 한번 더 클릭하고 자신의 GitHub으로 Fork한다.  
 
   ![](images/100/1-1.png)  
 
 ### **STEP 2**: Wercker 계정 생성하기 
 
-  **NOTE** Wercker 계정을 가지고 계신 경우는 **STEP 3**을 따라 하시면 됩니다.
-   GitHub 계정으로 Wercker에 로그인 하기 위해 아래 과정을 따라 로그인 합니다. 
+  **NOTE** Wercker 계정을 가지고 계신 경우는 **STEP 3**을 따라 하면 된다. 
+   GitHub 계정으로 Wercker에 로그인 하기 위해 아래 과정을 따라 로그인 한다.  
 
 - 브라우저에서 아래 링크로 이동:
     [http://app.wercker.com/](http://app.wercker.com/)
@@ -50,18 +50,18 @@
 
   ![](images/100/4.png)
 
-- Wercker에서 사용할 username과 email을 입력합니다. 
+- Wercker에서 사용할 username과 email을 입력한다. 
 
   ![](images/100/5.png)
 
 ### **STEP 3**: Wercker 애플리케이션 생성
 
-- Wercker 애플리케이션을 처음 만드는 경우는 파란색 **Create your first application** 버튼을 클릭. 이미 생성 경험이 있는 경우는 오른쪽위의 **plus button** 클릭하고  **Add application**를 클릭한다.:
+- Wercker 애플리케이션을 처음 만드는 경우는 파란색 **Create your first application** 버튼을 클릭하고, 이미 생성 경험이 있는 경우는 오른쪽위의 **plus button** 클릭한뒤  **Add application**를 클릭한다.
 
   ![](images/200/wercker-add-app.png)
 
 
-- default 로 설정하고 소스코드를 가져올 대상을 **GitHub**으로 설정하고 **Next** 클릭
+- 소스코드를 가져올 대상을 **GitHub**으로 설정하고 **Next** 클릭
 
   ![](images/100/7.png)
 
@@ -167,7 +167,25 @@
 
 ### **STEP 6**: Wercker에 환경 변수 설정
 
-- Wercker 브라우저에서, **Environment** 탭 클릭.
+- 빌드한 컨테이너 이미지를 오라클 클라우드에 저장하고 운영하기 위해서는 오라클 클라우드의 계정정보를 Wercker의 환경변수로 설정해야 한다. 
+- 이를 위해 OCI Console로 로그인해서 필요한 정보를 구한다.
+
+> 본 Hands On은 시간관계상 미리 구성된 환경을 제공한다.
+> 아래와 같이 바탕화면에 제공된 계정정보를 이용해 OCI Console에 로그인한다.  
+
+ - 바탕화면/OKE-HandsOn  
+   ![](images/200/1-Desktop-config2.png)
+
+ - OCI Console Login 하기
+ 위의 계정 정보를 이용해 아래의 링크로 로그인 한다. 
+https://console.us-ashburn-1.oraclecloud.com  
+   ![](images/200/1-oci-login.png)
+
+ - 브라우저 우측 상단에 Tenancy 정보과 user 정보를 확인할 수 있다.  
+   ![](images/200/1-oci-login-2.png)
+
+
+- 다시 Wercker 브라우저에서, **Environment** 탭 클릭.
 
   ![](images/100/31.png)
 
@@ -185,13 +203,14 @@
 
   ![](images/LabGuide100-9f627c8b.png)
 
-  - `DOCKER_USERNAME`의 `<your-tenancy-name>`는 OCI Console 에 User menu에 있음:
-
-  ![](images/500/LabGuide500-e51e6a21.png)
+  - `DOCKER_USERNAME`의 `<your-tenancy-name>`는 OCI Console 에 User menu에 있음: 
 
   - `DOCKER_USERNAME`의 `<your-oracle-cloud-username>` 은 로그인한 사용자 이메일 입니다. 
 
   - `DOCKER_REGISTRY`에는 **iad.ocir.io** 를 입력한다. 
+
+
+  > **HINT** : 위의 환경변수는 `바탕화면/OKE-HandsOn/account-info.txt`에서 미리 구성된 환경에 따른 값을 확인할 수 있다.
 
 
 ### **STEP 7**: Wercker push-release 파이프라인 정의 
@@ -401,21 +420,13 @@
 
 - **KUBERNETES_AUTH_TOKEN** 확인
 
-  **Windows**
-    ```bash
-    cd %USERPROFILE%\container-workshop
-    kubeconfig 파일을 열어서 확인
-    ```
+  **Windows PowerShell**
+  ```bash
+  > cd $HOME\Desktop\OKE-HandsOn
+  kubeconfig 파일을 열어서 확인 
+  ```
 
     ![](images/LabGuide200-406fe845.png)
-
-  **Mac/Linux**
-    ```bash
-    cd ~/container-workshop
-    cat kubeconfig | grep token | awk '{print $2}'
-    ```
-
-    ![](images/200/LabGuide200-8ef1b50b.png)
 
 - Wercker의 **Environment** 탭에서 **KUBERNETES_AUTH_TOKEN**의 Key Value 쌍을 입력 **Protected** 박스를 체크하고 **Add** 클릭.
 
@@ -423,18 +434,14 @@
 
 - **KUBERNETES_MASTER** 주소 확인
 
-  **Windows**
-    ```bash
-    cd %USERPROFILE%\container-workshop
-    kubeconfig 파일을 열어서 확인
-    ```
+  **Windows PowerShell**
+  ```bash
+  > cd $HOME\Desktop\OKE-HandsOn
+  kubeconfig 파일을 열어서 확인
+  ```
     
     ![](images/200/LabGuide200-oke-server-url.png)
 
-  **Mac/Linux**
-    ```bash
-    echo $(./kubectl config view | grep server | cut -f 2- -d ":" | tr -d " ")
-    ```
 
 - Wercker의 **Environment** 탭에서 **KUBERNETES_MASTER** Key에 위에서 복사한 값을 추가하다. 이때 꼭 **https://** 를 추가해야 한다. 
 
@@ -468,6 +475,7 @@
 
   ![](images/200/LabGuide200-bb187bd2.png)
 
+> **HINT** : 위의 환경변수는 `바탕화면/OKE-HandsOn/account-info.txt`에서 미리 구성된 환경에 따른 값을 확인할 수 있다.
 
 ### **STEP 13**: Validate deployment
 

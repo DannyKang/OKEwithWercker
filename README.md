@@ -9,6 +9,11 @@
 
  - 이 Hands On은 두개의 Hands On Lab 으로 구성되어 있다.
 
+## 선행 준비 사항 
+
+이 Lab에서는 Github 계정이 필요하다. 계정이 없으신 경우 아래 링크를 이용해 계정을 생성한다. 
+
+  -  [GitHub account](https://github.com/join)
 
 ### 1. Lab 100 - OKE를 이용한 k8s cluster provisioning
 

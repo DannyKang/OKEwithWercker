@@ -86,6 +86,8 @@
 
 - **build** 파이프라인은 애플리케이션 빌드와 Unit테스트에 이용된다.
 
+- 이제 워크플로우를 설정했으므로 이 워크플로우가 구체적으로 어떤 일을 할지를 정의하는 설정 파일인 **wercker.yml** 을 구성해야 한다. 
+
 - 브라우저의 GitHub에 접속했던 탭으로 돌아가서, 좀전에 fork했던 **twitter-feed** 레포지토리에서 **Create new file** 클릭
 
   ![](images/100/13.png)
@@ -131,9 +133,13 @@
 
 ## Wercker Push 파이프라인 생성 및 정의
 
-### **STEP 5**: Wercker Build, push-release 파이프라인 정의
+### **STEP 5**: Wercker push-release 파이프라인 정의
 
- - Build 파이프라이인을 만들었으니 만들어진 Docker image를 저장하는 Docker Hub 레포지토리에 저장해 본다. **Add new pipeline** 버튼 클릭
+ - Build 파이프라이인을 만들었으니 만들어진 Docker image를 저장하는 Docker Hub 레포지토리에 저장해 본다. **Wercker -> Workflow** 로 이동
+ 
+  ![](images/100/17.png)
+
+ 아래 **Add new pipeline** 버튼 클릭
 
   ![](images/100/18.png)
 

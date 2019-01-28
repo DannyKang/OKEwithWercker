@@ -88,8 +88,8 @@
 
   - 데모를 간략히 하기 위해 디폴트로 선택된 그대로 클러스터를 생성한다. 
 
-    ![](images/LabGuide200-6ff14524.png)
-    ![](images/LabGuide200-11191333.png)    
+    ![](images/LabGuide200-createOKE.png)
+    ![](images/LabGuide200-11191333.png)        
     
     - 사용자의 필요에 따라 클러스터 설정을 추가로 설정할 수 있다.
     - 현재 2가지 버전의 k8s를 사용가능 v1.11.5, v1.10.11

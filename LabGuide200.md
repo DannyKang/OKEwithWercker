@@ -3,9 +3,9 @@
 
 ## 학습목표
 
-**컨테이너 기반 CI/CD 툴인 Wercker를 사용하여 자바 애플리케이션을 컨테이너로 빌드하고 쿠버네티스환경에 배포 하는 일련의 과정을 자동화한다.**
+**컨테이너 기반 CI/CD 툴인 Wercker를 사용하여 자바 애플리케이션을 컨테이너로 빌드하고 쿠버네티스환경에 배포하는 일련의 과정을 자동화한다.**
 
-> Wercker는 네덜란드식 발음으로는 **"베커"**로, 영어식 발음으로는 **"워커"** 로 부른다.  
+> Wercker는 네덜란드식 발음으로는 **"베커"** 로, 영어식 발음으로는 **"워커"** 로 부른다.  
 
 ## 선행 준비 사항 
 
@@ -177,8 +177,8 @@
    ![](images/200/1-Desktop-config2.png)
 
  - OCI Console Login 하기
- 위의 계정 정보를 이용해 아래의 링크로 로그인 한다. 
-https://console.us-ashburn-1.oraclecloud.com  
+ 위의 계정 정보를 이용해 아래의 링크로 로그인 한다.  
+ https://console.us-ashburn-1.oraclecloud.com  
    ![](images/200/1-oci-login.png)
 
  - 브라우저 우측 상단에 Tenancy 정보과 user 정보를 확인할 수 있다.  
@@ -491,7 +491,7 @@ https://console.us-ashburn-1.oraclecloud.com
 
   **Windows PowerShell**
   ```bash
-  > set KUBECONIFIG=$HOME\Desktop\OKE-HandsOn\config
+  > set KUBECONIFIG=$HOME\Desktop\OKE-HandsOn\kubeconfig
   > kubectl proxy
   ```
 

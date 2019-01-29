@@ -234,7 +234,7 @@
 
 
 - [시연] **OCIR(OCI Registry)** 에 접속해서 저장된 Image를 확인한다.
- 
+
 https://console.us-ashburn-1.oraclecloud.com
 
 ## Wercker 배포(Deploy) 파이프라인 생성 및 실행
@@ -338,8 +338,7 @@ https://console.us-ashburn-1.oraclecloud.com
 
   **Windows**
   ```bash
-  > set KUBECONFIG=%USERPROFILE%\Desktop\OKE-HandsOn\kubeconfig
-  > kubectl proxy
+   > kubectl proxy
   ```
 
 

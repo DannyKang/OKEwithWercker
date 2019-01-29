@@ -210,10 +210,10 @@
 - 이를 위해 OCI Console로 로그인해서 필요한 정보를 구한다.
 
 > 본 Hands On은 시간관계상 미리 구성된 환경을 제공한다.
-> 아래와 같이 바탕화면에 제공된 계정정보를 이용해 OCI Console에 로그인한다.  
+> 아래와 같이 FireFox의 북마크로 제공합니다.   
 
- - 바탕화면/OKE-HandsOn  
-   ![](images/200/1-Desktop-config2.png)
+ - firefox 북마크  
+   ![](images/200/1-firefox.png)
 
 
 - 다시 Wercker 브라우저에서, **Environment** 탭 클릭.
@@ -231,15 +231,15 @@
   OCI_AUTH_TOKEN
 
   ```
-- 바탕화면에 제공한 계정정보를 기반으로 위의 환경변수를 설정한다. 
 
-  ![](images/200/1-account-info.png)
 
-- [시연] **OCIR(OCI Registry)** 에 접속해서 저장된 Image를 확인한다. 
+- [시연] **OCIR(OCI Registry)** 에 접속해서 저장된 Image를 확인한다.
+ 
+https://console.us-ashburn-1.oraclecloud.com
 
 ## Wercker 배포(Deploy) 파이프라인 생성 및 실행
 
-### **STEP 8**: wercker.yml 파일에 쿠버네티스 배포용 파이프라인 정의
+### **STEP 7**: wercker.yml 파일에 쿠버네티스 배포용 파이프라인 정의
 
   - **wercker.yml** 파일을 클릭하고 **연필** 버튼을 클릭
 
@@ -300,7 +300,7 @@
   ![](images/200/29.png)
 
 
-### **STEP 9**: Wercker에서 deployment pipelines 설정
+### **STEP 8**: Wercker에서 deployment pipelines 설정
 
 -  **[Wercker](https://app.wercker.com)**에서 **twitter-feed** 애플리케이션 선택.
 
@@ -324,7 +324,7 @@
   ![](images/200/34.png)
 
 
-### **STEP 10**: Validate deployment
+### **STEP 9**: Validate deployment
 
 - 이제 모든 설정이 완료되었으므로 github에서 Commit에 의해 CI/CD 자동화를 테스트 볼 시간이다. 간단히 wercker.yml에서 **연필** 을 클릭해서 편집모드에서 빈 공백에 "enter"를 클릭한후 **Commit change** 를 클릭한다. 
 
@@ -338,7 +338,7 @@
 
   **Windows**
   ```bash
-  > set KUBECONIFIG=%USERPROFILE%\Desktop\OKE-HandsOn\kubeconfig
+  > set KUBECONFIG=%USERPROFILE%\Desktop\OKE-HandsOn\kubeconfig
   > kubectl proxy
   ```
 
@@ -366,4 +366,10 @@
 
   ![](images/200/54.png)
 
-- 이렇게 Oracle의 쿠버네티스 서비스인 OKE와 wercker 를 통한 Container 기반의 CI/CD를 경험해 보았다. 
+
+## 마무리
+
+### 새로만든 클러스터 확인
+
+### 컨테이너 기반 CI/CD
+ - 소스코드 변경에 따라 빌드 -> 테스트 -> 이미지 저장 -> 클러스터 배포 및 운영을 자동화를 자동화
